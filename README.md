@@ -8,6 +8,8 @@ A simple usage example:
 
 ```dart
 import 'package:time/time.dart';
+
+final Duration threeHours = 1.hours + 2.hours;
 ```
 
 ## Features and bugs
