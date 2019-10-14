@@ -27,20 +27,16 @@ extension on int {
 extension on DateTime {
   /// Adds this DateTime and Duration and
   /// returns the sum as a new DateTime object.
-  DateTime operator +(Duration duration) {
-    return DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch + duration.inMilliseconds);
-  }
+  DateTime operator +(Duration duration) => this.add(duration);
 
   /// Subtracts the Duration from this DateTime
   /// returns the difference as a new DateTime object.
-  DateTime operator -(Duration duration) {
-    return DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch - duration.inMilliseconds);
-  }
+  DateTime operator -(Duration duration) => this.subtract(duration);
 }
 
 extension on Duration {
   /// Returns the representation in weeks
-  int get inWeeks => (inDays / 4).ceil();
+  int get inWeeks => (inDays / 7).ceil();
 
   /// Adds the Duration to the current DateTime and
   /// returns a DateTime in the future
