@@ -1,4 +1,4 @@
-extension on int {
+extension IntTimeExtension on int {
   /// Returns a Duration represented in weeks
   Duration get weeks => Duration(days: this * 7);
 
@@ -24,25 +24,21 @@ extension on int {
   Duration get nanoseconds => Duration(microseconds: this ~/ 1000);
 }
 
-extension on DateTime {
-  /// Adds this DateTime and Duration and
-  /// returns the sum as a new DateTime object.
-  DateTime operator +(Duration duration) => this.add(duration);
+extension DateTimeTimeExtension on DateTime {
+  /// Adds this DateTime and Duration and returns the sum as a new DateTime object.
+  DateTime operator +(Duration duration) => add(duration);
 
-  /// Subtracts the Duration from this DateTime
-  /// returns the difference as a new DateTime object.
-  DateTime operator -(Duration duration) => this.subtract(duration);
+  /// Subtracts the Duration from this DateTime returns the difference as a new DateTime object.
+  DateTime operator -(Duration duration) => subtract(duration);
 }
 
-extension on Duration {
+extension DurationTimeExtension on Duration {
   /// Returns the representation in weeks
   int get inWeeks => (inDays / 7).ceil();
 
-  /// Adds the Duration to the current DateTime and
-  /// returns a DateTime in the future
+  /// Adds the Duration to the current DateTime and returns a DateTime in the future
   DateTime get later => DateTime.now() + this;
 
-  /// Subtracts the Duration from the current DateTime and
-  /// returns a DateTime in the past
+  /// Subtracts the Duration from the current DateTime and returns a DateTime in the past
   DateTime get ago => DateTime.now() - this;
 }
