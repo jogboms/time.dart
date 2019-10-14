@@ -27,11 +27,11 @@ extension on int {
 extension on DateTime {
   /// Adds this DateTime and Duration and
   /// returns the sum as a new DateTime object.
-  DateTime operator +(Duration duration) => DateTime.add(duration);
+  DateTime operator +(Duration duration) => this.add(duration);
 
   /// Subtracts the Duration from this DateTime
   /// returns the difference as a new DateTime object.
-  DateTime operator -(Duration duration) => DateTime.subtract(duration);
+  DateTime operator -(Duration duration) => this.subtract(duration);
 }
 
 extension on Duration {
