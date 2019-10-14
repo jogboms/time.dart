@@ -1,6 +1,6 @@
 # ⏰ Time
 
-[![codecov](https://codecov.io/gh/jogboms/time.dart/branch/master/graph/badge.svg)](https://codecov.io/gh/jogboms/time.dart) [![pub package](https://img.shields.io/pub/v/time.svg)](https://pub.dartlang.org/packages/time)
+[![Build Status - Travis](https://travis-ci.org/jogboms/time.dart.svg?branch=master)](https://travis-ci.org/jogboms/time.dart) [![codecov](https://codecov.io/gh/jogboms/time.dart/branch/master/graph/badge.svg)](https://codecov.io/gh/jogboms/time.dart) [![pub package](https://img.shields.io/pub/v/time.svg)](https://pub.dartlang.org/packages/time)
 
 With shiny extensions, if you have ever written something like this, then look no further:
 
@@ -11,7 +11,7 @@ final DateTime fourHoursFromNow = DateTime.now() + Duration(hours: 4);
 ## 🎖 Installation
 ```yaml
 dependencies:
-  time: "^0.0.1"
+  time: "^1.0.0"
 ```
 
 ### ⚡ Import
