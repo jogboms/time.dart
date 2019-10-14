@@ -1,0 +1,20 @@
+language: dart
+
+dart:
+  - dev
+
+dart_task:
+  - dartfmt
+  - test
+  - dartanalyzer
+
+script:
+  - pub run test_coverage
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+cache:
+  directories:
+    - $HOME/.pub-cache
+    - .dart_tool
