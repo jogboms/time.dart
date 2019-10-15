@@ -17,6 +17,6 @@ void main() {
 
   // Duration Extensions
   print(7.days.inWeeks);
-  print(7.days.later);
+  print(7.days.fromNow);
   print(7.days.ago);
 }

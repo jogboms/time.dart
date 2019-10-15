@@ -27,7 +27,7 @@ final Duration tenMinutes = 10.minutes;
 final DateTime afterTenMinutes = DateTime.now() + 10.minutes;
 final Duration tenMinutesAndSome = 10.minutes + 15.seconds;
 final int tenMinutesInSeconds = 10.minutes.inSeconds;
-final DateTime tenMinutesLater = 10.minutes.later;
+final DateTime tenMinutesFromNow = 10.minutes.fromNow;
 ```
 
 You can perform all basic arithmetic operations on `Duration` as you always have been:
@@ -52,7 +52,7 @@ final int twoMinutesInSeconds = 2.minutes.inSeconds;
 You can also convert `Duration` to `DateTime`, if needed:
 
 ```dart
-final DateTime timeInFuture = 5.minutes.later;
+final DateTime timeInFuture = 5.minutes.fromNow;
 final DateTime timeInPast = 5.minutes.ago;
 ```
 
