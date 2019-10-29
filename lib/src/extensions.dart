@@ -37,7 +37,7 @@ extension DurationTimeExtension on Duration {
   int get inWeeks => (inDays / 7).ceil();
 
   /// Adds the Duration to the current DateTime and returns a DateTime in the future
-  DateTime get later => DateTime.now() + this;
+  DateTime get fromNow => DateTime.now() + this;
 
   /// Subtracts the Duration from the current DateTime and returns a DateTime in the past
   DateTime get ago => DateTime.now() - this;

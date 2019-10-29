@@ -58,8 +58,8 @@ void main() {
         expect(7.days.inWeeks, 1);
       });
 
-      test('can be converted into a later DateTime', () {
-        expect(7.days.later, _isAbout(DateTime.now() + 7.days));
+      test('can be converted into a future DateTime', () {
+        expect(7.days.fromNow, _isAbout(DateTime.now() + 7.days));
       });
 
       test('can be converted into a previous DateTime', () {
@@ -69,7 +69,7 @@ void main() {
   });
 }
 
-// Checks if the two times returned a *just* about equal. Since `later` and
+// Checks if the two times returned a *just* about equal. Since `fromNow` and
 // `ago` use DateTime.now(), we can't create an expected condition that is
 // exactly equal.
 Matcher _isAbout(DateTime expected) => predicate<DateTime>((dateTime) =>
