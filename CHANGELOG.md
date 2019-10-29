@@ -1,3 +1,8 @@
+## 1.1.0
+
+- Breaking Change: renamed `later` to `fromNow` to align with other ecosystems
+- Introduced support for other variants of `num` i.e `double`
+
 ## 1.0.0
 
 - Named extensions to allow discoverability
