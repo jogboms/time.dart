@@ -11,7 +11,7 @@ final DateTime fourHoursFromNow = DateTime.now() + Duration(hours: 4);
 ## 🎖 Installation
 ```yaml
 dependencies:
-  time: "^1.0.0"
+  time: "^1.1.0"
 ```
 
 ### ⚡ Import
@@ -24,6 +24,7 @@ import 'package:time/time.dart';
 
 ```dart
 final Duration tenMinutes = 10.minutes;
+final Duration oneHourThirtyMinutes = 1.5.hours;
 final DateTime afterTenMinutes = DateTime.now() + 10.minutes;
 final Duration tenMinutesAndSome = 10.minutes + 15.seconds;
 final int tenMinutesInSeconds = 10.minutes.inSeconds;
