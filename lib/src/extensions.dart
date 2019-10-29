@@ -1,27 +1,27 @@
-extension IntTimeExtension on int {
+extension NumTimeExtension<T extends num> on T {
   /// Returns a Duration represented in weeks
-  Duration get weeks => Duration(days: this * 7);
+  Duration get weeks => days * DurationTimeExtension.daysPerWeek;
 
   /// Returns a Duration represented in days
-  Duration get days => Duration(days: this);
+  Duration get days => milliseconds * Duration.millisecondsPerDay;
 
   /// Returns a Duration represented in hours
-  Duration get hours => Duration(hours: this);
+  Duration get hours => milliseconds * Duration.millisecondsPerHour;
 
   /// Returns a Duration represented in minutes
-  Duration get minutes => Duration(minutes: this);
+  Duration get minutes => milliseconds * Duration.millisecondsPerMinute;
 
   /// Returns a Duration represented in seconds
-  Duration get seconds => Duration(seconds: this);
+  Duration get seconds => milliseconds * Duration.millisecondsPerSecond;
 
   /// Returns a Duration represented in milliseconds
-  Duration get milliseconds => Duration(milliseconds: this);
+  Duration get milliseconds => Duration(microseconds: (this * Duration.microsecondsPerMillisecond).toInt());
 
   /// Returns a Duration represented in microseconds
-  Duration get microseconds => Duration(microseconds: this);
+  Duration get microseconds => milliseconds ~/ Duration.microsecondsPerMillisecond;
 
   /// Returns a Duration represented in nanoseconds
-  Duration get nanoseconds => Duration(microseconds: this ~/ 1000);
+  Duration get nanoseconds => microseconds ~/ DurationTimeExtension.nanosecondsPerMicrosecond;
 }
 
 extension DateTimeTimeExtension on DateTime {
@@ -33,8 +33,11 @@ extension DateTimeTimeExtension on DateTime {
 }
 
 extension DurationTimeExtension on Duration {
+  static const int daysPerWeek = 7;
+  static const int nanosecondsPerMicrosecond = 1000;
+
   /// Returns the representation in weeks
-  int get inWeeks => (inDays / 7).ceil();
+  int get inWeeks => (inDays / daysPerWeek).ceil();
 
   /// Adds the Duration to the current DateTime and returns a DateTime in the future
   DateTime get fromNow => DateTime.now() + this;
