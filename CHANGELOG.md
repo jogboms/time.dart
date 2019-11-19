@@ -1,3 +1,7 @@
+## 1.1.1
+
+- Fix breaking change from v1.1.0 by introducing @deprecated flag
+
 ## 1.1.0
 
 - Breaking Change: renamed `later` to `fromNow` to align with other ecosystems

@@ -3,6 +3,7 @@
 .packages
 test/.test_coverage.dart
 coverage/
+coverage_badge.svg
 pubspec.lock
 
 # Conventional directory for build outputs

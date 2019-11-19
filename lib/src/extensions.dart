@@ -42,6 +42,9 @@ extension DurationTimeExtension on Duration {
   /// Adds the Duration to the current DateTime and returns a DateTime in the future
   DateTime get fromNow => DateTime.now() + this;
 
+  @Deprecated('Use fromNow instead. Will be removed in 2.0.0')
+  DateTime get later => fromNow;
+
   /// Subtracts the Duration from the current DateTime and returns a DateTime in the past
   DateTime get ago => DateTime.now() - this;
 }
