@@ -37,8 +37,7 @@ extension DateTimeTimeExtension on DateTime {
   /// final end = DateTime(2020);
   /// start.to(end, by: const Duration(days: 365)).forEach(print); // 2020-01-01 00:00:00.000
   /// ```
-  Iterable<DateTime> to(DateTime to,
-      {Duration by = const Duration(days: 1)}) sync* {
+  Iterable<DateTime> to(DateTime to, {Duration by = const Duration(days: 1)}) sync* {
     if (isAtSameMomentAs(to)) return;
 
     if (isBefore(to)) {
