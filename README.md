@@ -11,7 +11,7 @@ final DateTime fourHoursFromNow = DateTime.now() + Duration(hours: 4);
 ## 🎖 Installation
 ```yaml
 dependencies:
-  time: "^1.1.1"
+  time: "^1.2.0"
 ```
 
 ### ⚡ Import
@@ -55,6 +55,14 @@ You can also convert `Duration` to `DateTime`, if needed:
 ```dart
 final DateTime timeInFuture = 5.minutes.fromNow;
 final DateTime timeInPast = 5.minutes.ago;
+```
+
+Iterate through a `DateTime` range:
+
+```dart
+final DateTime start = DateTime(2019, 12, 2);
+final DateTime end = start + 1.weeks;
+final DateTime tuesday = start.to(end).firstWhere((date) => date.weekday == DateTime.tuesday);
 ```
 
 ## 🐛 Bugs/Requests
