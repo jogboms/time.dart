@@ -57,6 +57,14 @@ final DateTime timeInFuture = 5.minutes.fromNow;
 final DateTime timeInPast = 5.minutes.ago;
 ```
 
+Iterate through a `DateTime` range:
+
+```dart
+final DateTime start = DateTime(2019, 12, 2);
+final DateTime end = start + 1.weeks;
+final DateTime tuesday = start.to(end).firstWhere((date) => date.weekday == DateTime.tuesday);
+```
+
 ## 🐛 Bugs/Requests
 
 If you encounter any problems feel free to open an issue. If you feel the library is missing a feature, please raise a ticket on Github and I'll look into it. Pull request are also welcome.
