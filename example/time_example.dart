@@ -27,4 +27,6 @@ void main() {
   print(7.days.inWeeks);
   print(7.days.fromNow);
   print(7.days.ago);
+
+  DateTime.now().to(1.weeks.fromNow, by: 1.days).forEach(print);
 }
