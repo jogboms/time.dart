@@ -1,7 +1,6 @@
 import 'package:time/time.dart';
 
 void main() {
-  // Num Extensions
   print(1.weeks);
   print(1.5.weeks);
   print(7.days);
@@ -18,15 +17,4 @@ void main() {
   print(10.5.microseconds);
   print(5.nanoseconds);
   print(5.5.nanoseconds);
-
-  // DateTime Extensions
-  print(DateTime.now() + 7.days);
-  print(DateTime.now() - 7.days);
-
-  // Duration Extensions
-  print(7.days.inWeeks);
-  print(7.days.fromNow);
-  print(7.days.ago);
-
-  DateTime.now().to(1.weeks.fromNow, by: 1.days).forEach(print);
 }
