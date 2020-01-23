@@ -142,6 +142,46 @@ void main() {
       });
     });
   });
+  
+  group('Season', () {
+    final year = 1995;
+        group('Inverse',() {
+      test('Season inverse', () {
+        expect(Season.winter.inverse, Season.summer);
+        expect(Season.summer.inverse, Season.winter);
+        expect(Season.autumn.inverse, Season.spring);
+        expect(Season.spring.inverse, Season.autumn);
+      });
+    });
+    group('from datetime', () {
+      test('north', () {
+        expect(DateTime(year, 12, 23).seasonNorth, Season.winter);
+        expect(DateTime(year,3, 20).seasonNorth, Season.winter);
+
+        expect(DateTime(year,3, 21).seasonNorth, Season.spring);
+        expect(DateTime(year,6, 20).seasonNorth, Season.spring);
+
+        expect(DateTime(year,6, 21).seasonNorth, Season.summer);
+        expect(DateTime(year,9, 22).seasonNorth, Season.summer);
+
+        expect(DateTime(year,9, 21).seasonNorth, Season.autumn);
+        expect(DateTime(year,12, 20).seasonNorth, Season.autumn);
+      });
+      test('south', () {
+        expect(DateTime(year, 12, 23).seasonSouth, Season.summer);
+        expect(DateTime(year,3, 20).seasonSouth, Season.summer);
+
+        expect(DateTime(year,3, 21).seasonSouth, Season.autumn);
+        expect(DateTime(year,6, 20).seasonSouth, Season.autumn);
+
+        expect(DateTime(year,6, 21).seasonSouth, Season.winter);
+        expect(DateTime(year,9, 22).seasonSouth, Season.winter);
+
+        expect(DateTime(year,9, 21).seasonSouth, Season.spring);
+        expect(DateTime(year,12, 20).seasonSouth, Season.spring);
+      });
+    });
+  });
 }
 
 // Checks if the two times returned a *just* about equal. Since `fromNow` and
