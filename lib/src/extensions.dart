@@ -77,4 +77,7 @@ extension DurationTimeExtension on Duration {
 
   /// Subtracts the Duration from the current DateTime and returns a DateTime in the past
   DateTime get ago => DateTime.now() - this;
+
+  /// Returns a Future.delayed from this
+  Future<void> get delay => Future.delayed(this);
 }
