@@ -1,3 +1,8 @@
+## 1.3.0
+
+- Introduce `delay` extension to `Duration`
+- Introduce `copyWith` extension to `DateTime`
+
 ## 1.2.0
 
 - Iterate through a `DateTime` range:
