@@ -1,6 +1,6 @@
 import 'package:time/time.dart';
 
-void main() {
+void main() async {
   // Num Extensions
   print(1.weeks);
   print(1.5.weeks);
@@ -18,6 +18,9 @@ void main() {
   print(10.5.microseconds);
   print(5.nanoseconds);
   print(5.5.nanoseconds);
+
+  // Delay for 5 seconds
+  await 5.seconds.delay;
 
   // DateTime Extensions
   print(DateTime.now() + 7.days);

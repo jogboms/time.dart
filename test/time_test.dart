@@ -140,6 +140,15 @@ void main() {
       test('can be converted into a previous DateTime', () {
         expect(7.days.ago, _isAbout(DateTime.now() - 7.days));
       });
+
+      test('Can be used to pause the program flow', () async {
+        final timeToWait = Duration(seconds: 2);
+        final before = DateTime.now();
+        await timeToWait.delay;
+        final after = DateTime.now();
+        final extraTime = after.millisecondsSinceEpoch - before.add(timeToWait).millisecondsSinceEpoch;
+        expect(extraTime >= 0, true);
+      });
     });
   });
 }

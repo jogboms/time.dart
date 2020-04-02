@@ -65,6 +65,15 @@ final DateTime end = start + 1.weeks;
 final DateTime tuesday = start.to(end).firstWhere((date) => date.weekday == DateTime.tuesday);
 ```
 
+You can also delay code execution:
+
+```dart
+void doSomething() async {
+  await 5.seconds.delay;
+  // Do the other things
+}
+```
+
 ## 🐛 Bugs/Requests
 
 If you encounter any problems feel free to open an issue. If you feel the library is missing a feature, please raise a ticket on Github and I'll look into it. Pull request are also welcome.
