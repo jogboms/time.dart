@@ -114,41 +114,85 @@ void main() {
         final hours = start.to(end, by: 1.hours);
         expect(hours.single, end);
       });
+
+      group('can handle copyWith', () {
+        test('without null values', () {
+          final initial = DateTime(2019, 2, 4, 24, 50, 45, 1, 1);
+          final expected = initial.copyWith(
+            year: 2021,
+            month: 10,
+            day: 28,
+            hour: 12,
+            minute: 45,
+            second: 10,
+            millisecond: 0,
+            microsecond: 12,
+          );
+          expect(expected.year, 2021);
+          expect(expected.month, 10);
+          expect(expected.day, 28);
+          expect(expected.hour, 12);
+          expect(expected.minute, 45);
+          expect(expected.second, 10);
+          expect(expected.millisecond, 0);
+          expect(expected.microsecond, 12);
+        });
+      });
+
+      test('with null values', () {
+        final initial = DateTime(2019, 2, 4, 24, 50, 45, 1, 1);
+        final year = initial.copyWith(year: 2021);
+        expect(year.year, 2021);
+        final month = initial.copyWith(month: 10);
+        expect(month.month, 10);
+        final day = initial.copyWith(day: 28);
+        expect(day.day, 28);
+        final hour = initial.copyWith(hour: 12);
+        expect(hour.hour, 12);
+        final minute = initial.copyWith(minute: 45);
+        expect(minute.minute, 45);
+        final second = initial.copyWith(second: 10);
+        expect(second.second, 10);
+        final millisecond = initial.copyWith(millisecond: 0);
+        expect(millisecond.millisecond, 0);
+        final microsecond = initial.copyWith(microsecond: 12);
+        expect(microsecond.microsecond, 12);
+      });
+    });
+  });
+
+  group('Duration', () {
+    test('has correct days-to-week static value', () {
+      expect(DurationTimeExtension.daysPerWeek, 7);
     });
 
-    group('Duration', () {
-      test('has correct days-to-week static value', () {
-        expect(DurationTimeExtension.daysPerWeek, 7);
-      });
+    test('has correct nanosecond-to-microsecond static value', () {
+      expect(DurationTimeExtension.nanosecondsPerMicrosecond, 1000);
+    });
 
-      test('has correct nanosecond-to-microsecond static value', () {
-        expect(DurationTimeExtension.nanosecondsPerMicrosecond, 1000);
-      });
+    test('can be converted to weeks', () {
+      expect(7.days.inWeeks, 1);
+    });
 
-      test('can be converted to weeks', () {
-        expect(7.days.inWeeks, 1);
-      });
+    test('can be converted into a future DateTime', () {
+      expect(7.days.fromNow, _isAbout(DateTime.now() + 7.days));
+    });
 
-      test('can be converted into a future DateTime', () {
-        expect(7.days.fromNow, _isAbout(DateTime.now() + 7.days));
-      });
+    test('can still use later until 2.0.0', () {
+      expect(7.days.later, _isAbout(DateTime.now() + 7.days));
+    });
 
-      test('can still use later until 2.0.0', () {
-        expect(7.days.later, _isAbout(DateTime.now() + 7.days));
-      });
+    test('can be converted into a previous DateTime', () {
+      expect(7.days.ago, _isAbout(DateTime.now() - 7.days));
+    });
 
-      test('can be converted into a previous DateTime', () {
-        expect(7.days.ago, _isAbout(DateTime.now() - 7.days));
-      });
-
-      test('Can be used to pause the program flow', () async {
-        final timeToWait = Duration(seconds: 2);
-        final before = DateTime.now();
-        await timeToWait.delay;
-        final after = DateTime.now();
-        final extraTime = after.millisecondsSinceEpoch - before.add(timeToWait).millisecondsSinceEpoch;
-        expect(extraTime >= 0, true);
-      });
+    test('Can be used to pause the program flow', () async {
+      final timeToWait = Duration(seconds: 2);
+      final before = DateTime.now();
+      await timeToWait.delay;
+      final after = DateTime.now();
+      final extraTime = after.millisecondsSinceEpoch - before.add(timeToWait).millisecondsSinceEpoch;
+      expect(extraTime >= 0, true);
     });
   });
 }
