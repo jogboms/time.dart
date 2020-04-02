@@ -25,6 +25,18 @@ void main() async {
   // DateTime Extensions
   print(DateTime.now() + 7.days);
   print(DateTime.now() - 7.days);
+  print(
+    DateTime(2019, 2, 4, 24, 50, 45, 1, 1).copyWith(
+      year: 2021,
+      month: 10,
+      day: 28,
+      hour: 12,
+      minute: 45,
+      second: 10,
+      millisecond: 0,
+      microsecond: 12,
+    ),
+  );
 
   // Duration Extensions
   print(7.days.inWeeks);

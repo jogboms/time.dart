@@ -74,6 +74,22 @@ void doSomething() async {
 }
 ```
 
+You can also use the popular `copyWith`:
+
+```dart
+final initial = DateTime(2019, 2, 4, 24, 50, 45, 1, 1);
+final expected = initial.copyWith(
+  year: 2021,
+  month: 10,
+  day: 28,
+  hour: 12,
+  minute: 45,
+  second: 10,
+  millisecond: 0,
+  microsecond: 12,
+);
+```
+
 ## 🐛 Bugs/Requests
 
 If you encounter any problems feel free to open an issue. If you feel the library is missing a feature, please raise a ticket on Github and I'll look into it. Pull request are also welcome.
