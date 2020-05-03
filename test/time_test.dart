@@ -95,6 +95,22 @@ void main() {
         );
       });
 
+      test('can get only the time', () {
+        expect(
+          /// Returns the time
+          DateTime(2020, 4, 10, 15, 27, 30).timeOfDay,
+          '15:27:30',
+        );
+      });
+
+      test('can get only the time by one digit', () {
+        expect(
+          /// Returns the time by one digit
+          DateTime(2020, 4, 10, 1, 7, 3).timeOfDay,
+          '01:07:03',
+        );
+      });
+
       test('can iterate over DateTimes', () {
         final start = DateTime(2019);
         final end = start + 2.days;
