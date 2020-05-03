@@ -15,13 +15,16 @@ extension NumTimeExtension<T extends num> on T {
   Duration get seconds => milliseconds * Duration.millisecondsPerSecond;
 
   /// Returns a Duration represented in milliseconds
-  Duration get milliseconds => Duration(microseconds: (this * Duration.microsecondsPerMillisecond).toInt());
+  Duration get milliseconds => Duration(
+      microseconds: (this * Duration.microsecondsPerMillisecond).toInt());
 
   /// Returns a Duration represented in microseconds
-  Duration get microseconds => milliseconds ~/ Duration.microsecondsPerMillisecond;
+  Duration get microseconds =>
+      milliseconds ~/ Duration.microsecondsPerMillisecond;
 
   /// Returns a Duration represented in nanoseconds
-  Duration get nanoseconds => microseconds ~/ DurationTimeExtension.nanosecondsPerMicrosecond;
+  Duration get nanoseconds =>
+      microseconds ~/ DurationTimeExtension.nanosecondsPerMicrosecond;
 }
 
 extension DateTimeTimeExtension on DateTime {
@@ -37,7 +40,8 @@ extension DateTimeTimeExtension on DateTime {
   /// final end = DateTime(2020);
   /// start.to(end, by: const Duration(days: 365)).forEach(print); // 2020-01-01 00:00:00.000
   /// ```
-  Iterable<DateTime> to(DateTime to, {Duration by = const Duration(days: 1)}) sync* {
+  Iterable<DateTime> to(DateTime to,
+      {Duration by = const Duration(days: 1)}) sync* {
     if (isAtSameMomentAs(to)) return;
 
     if (isBefore(to)) {
