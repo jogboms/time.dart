@@ -87,6 +87,14 @@ void main() {
         );
       });
 
+      test('can get only year, month and day', () {
+        expect(
+          /// Returns only year, month and day
+          DateTime(2020, 4, 10, 15, 27, 30).date,
+          DateTime(2020, 4, 10, 0, 0, 0),
+        );
+      });
+
       test('can iterate over DateTimes', () {
         final start = DateTime(2019);
         final end = start + 2.days;
