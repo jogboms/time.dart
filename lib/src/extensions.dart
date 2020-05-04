@@ -35,7 +35,7 @@ extension DateTimeTimeExtension on DateTime {
   DateTime get date => DateTime(year, month, day);
 
   /// Returns only the time
-  String get timeOfDay => "${'$hour'.padLeft(2, '0')}:${'$minute'.padLeft(2, '0')}:${'$second'.padLeft(2, '0')}";
+  Duration get timeOfDay => hour.hours + minute.minutes + second.seconds;
 
   /// Returns a range of dates to [to], exclusive start, inclusive end
   /// ```dart
