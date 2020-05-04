@@ -59,8 +59,7 @@ void main() {
       });
 
       test('can be converted into milliseconds', () {
-        expect(
-            15.5.milliseconds, Duration(milliseconds: 15, microseconds: 500));
+        expect(15.5.milliseconds, Duration(milliseconds: 15, microseconds: 500));
       });
 
       test('can be converted into microseconds', () {
@@ -216,8 +215,7 @@ void main() {
       final before = DateTime.now();
       await timeToWait.delay;
       final after = DateTime.now();
-      final extraTime = after.millisecondsSinceEpoch -
-          before.add(timeToWait).millisecondsSinceEpoch;
+      final extraTime = after.millisecondsSinceEpoch - before.add(timeToWait).millisecondsSinceEpoch;
       expect(extraTime >= 0, true);
     });
   });
@@ -226,5 +224,5 @@ void main() {
 // Checks if the two times returned a *just* about equal. Since `fromNow` and
 // `ago` use DateTime.now(), we can't create an expected condition that is
 // exactly equal.
-Matcher _isAbout(DateTime expected) => predicate<DateTime>((dateTime) =>
-    dateTime.millisecondsSinceEpoch - expected.millisecondsSinceEpoch < 1);
+Matcher _isAbout(DateTime expected) =>
+    predicate<DateTime>((dateTime) => dateTime.millisecondsSinceEpoch - expected.millisecondsSinceEpoch < 1);
