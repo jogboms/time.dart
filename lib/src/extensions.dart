@@ -1,3 +1,5 @@
+import 'package:meta/meta.dart';
+
 extension NumTimeExtension<T extends num> on T {
   /// Returns a Duration represented in weeks
   Duration get weeks => days * DurationTimeExtension.daysPerWeek;
@@ -82,6 +84,77 @@ extension DateTimeTimeExtension on DateTime {
       microsecond ?? this.microsecond,
     );
   }
+
+  /// Adds months
+  DateTime addMonths(int months) {
+    final result = copyWith(month: month + months);
+    return result.day == day
+        ? result
+        : result.copyWith(
+            month: result.month - 1,
+            day: _daysInMonthOf(year: result.year, month: result.month - 1),
+          );
+  }
+
+  /// Subtracts months
+  DateTime subtractMonths(int months) {
+    final result = copyWith(month: month - months);
+    return result.day == day
+        ? result
+        : result.copyWith(
+            month: result.month - 1,
+            day: _daysInMonthOf(year: result.year, month: result.month - 1),
+          );
+  }
+
+  /// Adds years
+  DateTime addYears(int years) {
+    final result = copyWith(year: year + years);
+    return result.month == month
+        ? result
+        : result.copyWith(
+            month: month,
+            day: _daysInMonthOf(year: result.year, month: result.month - 1),
+          );
+  }
+
+  /// Subtracts years
+  DateTime subtractYears(int years) {
+    final result = copyWith(year: year - years);
+    return result.month == month
+        ? result
+        : result.copyWith(
+            month: month,
+            day: _daysInMonthOf(year: result.year, month: result.month - 1),
+          );
+  }
+
+  /// days in month
+  static final _daysInMonth = {
+    1: 31,
+    2: 28,
+    3: 31,
+    4: 30,
+    5: 31,
+    6: 30,
+    7: 31,
+    8: 31,
+    9: 30,
+    10: 31,
+    11: 30,
+    12: 31,
+    'leap': 29,
+  };
+
+  /// is leap year for
+  static bool _isLeapYearFor(int year) => (year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0));
+
+  /// days in month of
+  static int _daysInMonthOf({
+    @required int year,
+    @required int month,
+  }) =>
+      (month == DateTime.february && _isLeapYearFor(year)) ? _daysInMonth['leap'] : _daysInMonth[month];
 }
 
 extension DurationTimeExtension on Duration {

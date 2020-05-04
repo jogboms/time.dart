@@ -158,6 +158,61 @@ void main() {
         final microsecond = initial.copyWith(microsecond: 12);
         expect(microsecond.microsecond, 12);
       });
+
+      test('Add months', () {
+        final initial = DateTime(2019, 11, 4, 11, 50, 45, 1, 1);
+        expect(initial.addMonths(2), DateTime(2020, 1, 4, 11, 50, 45, 1, 1));
+      });
+
+      test('Add months in leap year, last of month pattern', () {
+        final initial = DateTime(2016, 2, 29, 11, 50, 45, 1, 1);
+        expect(initial.addMonths(2), DateTime(2016, 4, 29, 11, 50, 45, 1, 1));
+      });
+
+      test('Add months in leap year, one year later pattern', () {
+        final initial = DateTime(2016, 2, 29, 11, 50, 45, 1, 1);
+        expect(initial.addMonths(12), DateTime(2017, 2, 28, 11, 50, 45, 1, 1));
+      });
+
+      test('Add months in leap year, last of month trimmed pattern', () {
+        final initial = DateTime(2019, 3, 31, 11, 50, 45, 1, 1);
+        expect(initial.addMonths(1), DateTime(2019, 4, 30, 11, 50, 45, 1, 1));
+      });
+
+      test('Subtract months', () {
+        final initial = DateTime(2019, 1, 1, 11, 50, 45, 1, 1);
+        expect(initial.subtractMonths(2), DateTime(2018, 11, 1, 11, 50, 45, 1, 1));
+      });
+
+      test('Subtract months in leap year, last of month pattern', () {
+        final initial = DateTime(2019, 2, 28, 11, 50, 45, 1, 1);
+        expect(initial.subtractMonths(3), DateTime(2018, 11, 28, 11, 50, 45, 1, 1));
+      });
+
+      test('Subtract months in leap year, last of month pattern', () {
+        final initial = DateTime(2016, 2, 29, 11, 50, 45, 1, 1);
+        expect(initial.subtractMonths(12), DateTime(2015, 2, 28, 11, 50, 45, 1, 1));
+      });
+
+      test('Add years', () {
+        final initial = DateTime(2019, 2, 4, 11, 50, 45, 1, 1);
+        expect(initial.addYears(3), DateTime(2022, 2, 4, 11, 50, 45, 1, 1));
+      });
+
+      test('Add years in leap year', () {
+        final initial = DateTime(2016, 2, 29, 11, 50, 45, 1, 1);
+        expect(initial.addYears(3), DateTime(2019, 2, 28, 11, 50, 45, 1, 1));
+      });
+
+      test('Subtract years', () {
+        final initial = DateTime(2019, 1, 1, 24, 50, 45, 1, 1);
+        expect(initial.subtractYears(3), DateTime(2016, 1, 1, 24, 50, 45, 1, 1));
+      });
+
+      test('Subtract years in leap year', () {
+        final initial = DateTime(2016, 2, 29, 24, 50, 45, 1, 1);
+        expect(initial.subtractYears(3), DateTime(2013, 2, 28, 24, 50, 45, 1, 1));
+      });
     });
   });
 
