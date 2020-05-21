@@ -33,6 +33,12 @@ extension DateTimeTimeExtension on DateTime {
   /// Subtracts the Duration from this DateTime returns the difference as a new DateTime object.
   DateTime operator -(Duration duration) => subtract(duration);
 
+  /// Returns only year, month and day
+  DateTime get date => DateTime(year, month, day);
+
+  /// Returns only the time
+  Duration get timeOfDay => hour.hours + minute.minutes + second.seconds;
+
   /// Returns a range of dates to [to], exclusive start, inclusive end
   /// ```dart
   /// final start = DateTime(2019);
