@@ -36,7 +36,7 @@ extension DateTimeTimeExtension on DateTime {
     } else if (otherTime is DateTime){
       return difference(otherTime)
     } else {
-      throw IllegalArgumentException("${otherTime.toString()} is neither Duration() nor DateTime()");
+      throw ArgumentError.value("${otherTime.toString()} is neither Duration() nor DateTime()");
     }
 
   /// Returns only year, month and day
