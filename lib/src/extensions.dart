@@ -28,8 +28,16 @@ extension DateTimeTimeExtension on DateTime {
   /// Adds this DateTime and Duration and returns the sum as a new DateTime object.
   DateTime operator +(Duration duration) => add(duration);
 
-  /// Subtracts the Duration from this DateTime returns the difference as a new DateTime object.
-  DateTime operator -(Duration duration) => subtract(duration);
+  /// If used with a Duration, it subtracts the Duration from this DateTime returns the difference as a new DateTime object.
+  /// If used with a DateTime it returns the difference between the two DateTime objects as a Duration.
+  DateTime operator -(Comparable otherTime) {
+    if (otherTime is Duration){
+      return subtract(otherTime);
+    } else if (otherTime is DateTime){
+      return difference(otherTime)
+    } else {
+      throw IllegalArgumentException("${otherTime.toString()} is neither Duration() nor DateTime()");
+    }
 
   /// Returns only year, month and day
   DateTime get date => DateTime(year, month, day);
