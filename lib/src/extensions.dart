@@ -37,6 +37,26 @@ extension DateTimeTimeExtension on DateTime {
   /// Returns only the time
   Duration get timeOfDay => hour.hours + minute.minutes + second.seconds;
 
+  /// Returns if today, true
+  bool get isToday {
+    return _calculateDifference(this) == 0;
+  }
+
+  /// Returns if tomorrow, true
+  bool get isTomorrow {
+    return _calculateDifference(this) == 1;
+  }
+
+  /// Returns if yesterday, true
+  bool get isYesterday {
+    return _calculateDifference(this) == -1;
+  }
+
+  static int _calculateDifference(DateTime date) {
+    final now = DateTime.now();
+    return DateTime(date.year, date.month, date.day).difference(DateTime(now.year, now.month, now.day)).inDays;
+  }
+
   /// Returns a range of dates to [to], exclusive start, inclusive end
   /// ```dart
   /// final start = DateTime(2019);

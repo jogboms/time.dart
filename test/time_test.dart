@@ -102,6 +102,33 @@ void main() {
         );
       });
 
+      test('can handle isToday', () {
+        final today = DateTime.now();
+        final yesterday = DateTime.now().subtract(Duration(days: 1));
+        final tomorrow = DateTime.now().add(Duration(days: 1));
+        expect(today.isToday, true);
+        expect(yesterday.isToday, false);
+        expect(tomorrow.isToday, false);
+      });
+
+      test('can handle isTomorrow', () {
+        final today = DateTime.now();
+        final yesterday = DateTime.now().subtract(Duration(days: 1));
+        final tomorrow = DateTime.now().add(Duration(days: 1));
+        expect(today.isTomorrow, false);
+        expect(yesterday.isTomorrow, false);
+        expect(tomorrow.isTomorrow, true);
+      });
+
+      test('can handle isYesterday', () {
+        final today = DateTime.now();
+        final yesterday = DateTime.now().subtract(Duration(days: 1));
+        final tomorrow = DateTime.now().add(Duration(days: 1));
+        expect(today.isYesterday, false);
+        expect(yesterday.isYesterday, true);
+        expect(tomorrow.isYesterday, false);
+      });
+
       test('can iterate over DateTimes', () {
         final start = DateTime(2019);
         final end = start + 2.days;
