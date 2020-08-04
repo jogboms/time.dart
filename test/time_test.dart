@@ -131,6 +131,33 @@ void main() {
         expect(hours.single, end);
       });
 
+      group('can handle calculateAge', () {
+        test('normal pattern 1', () {
+          // October 10, 2011 is Dart's birthday.
+          final birthday = DateTime(2011, 10, 10, 0, 0, 0, 0, 0);
+          final expected = birthday.calculateAge();
+          expect(expected, 8);
+        });
+
+        test('normal pattern 2', () {
+          final birthday = DateTime(2011, 10, 10, 23, 59, 59, 999, 999);
+          final expected = birthday.calculateAge();
+          expect(expected, 8);
+        });
+
+        test('East Asian Age Reckoning pattern 1', () {
+          final birthday = DateTime(2011, 10, 10, 0, 0, 0, 0, 0);
+          final expected = birthday.calculateAge(isEastAsianAgeReckoning: true);
+          expect(expected, 10);
+        });
+
+        test('East Asian Age Reckoning pattern 2', () {
+          final birthday = DateTime(2011, 10, 10, 23, 59, 59, 999, 999);
+          final expected = birthday.calculateAge(isEastAsianAgeReckoning: true);
+          expect(expected, 10);
+        });
+      });
+
       group('can handle copyWith', () {
         test('without null values', () {
           final initial = DateTime(2019, 2, 4, 24, 50, 45, 1, 1);

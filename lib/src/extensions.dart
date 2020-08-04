@@ -67,6 +67,31 @@ extension DateTimeTimeExtension on DateTime {
     }
   }
 
+  /// [isEastAsianAgeReckoning] East Asian Age Reckoning
+  int calculateAge({bool isEastAsianAgeReckoning = false}) {
+    final currentDate = DateTime.now();
+
+    var age = currentDate.year - year;
+
+    if (isEastAsianAgeReckoning) {
+      return age + 1;
+    }
+
+    final month1 = currentDate.month;
+    final month2 = month;
+    if (month2 > month1) {
+      age--;
+    } else if (month1 == month2) {
+      final day1 = currentDate.day;
+      final day2 = day;
+      if (day2 > day1) {
+        age--;
+      }
+    }
+
+    return age;
+  }
+
   DateTime copyWith({
     int year,
     int month,
