@@ -120,13 +120,13 @@ void main() {
         expect(tomorrow.isTomorrow, true);
       });
 
-      test('can handle isYesterday', () {
+      test('can handle wasYesterday', () {
         final today = DateTime.now();
         final yesterday = DateTime.now().subtract(Duration(days: 1));
         final tomorrow = DateTime.now().add(Duration(days: 1));
-        expect(today.isYesterday, false);
-        expect(yesterday.isYesterday, true);
-        expect(tomorrow.isYesterday, false);
+        expect(today.wasYesterday, false);
+        expect(yesterday.wasYesterday, true);
+        expect(tomorrow.wasYesterday, false);
       });
 
       test('can iterate over DateTimes', () {
