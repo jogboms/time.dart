@@ -48,7 +48,7 @@ extension DateTimeTimeExtension on DateTime {
   }
 
   /// Returns if yesterday, true
-  bool get isYesterday {
+  bool get wasYesterday {
     return _calculateDifference(this) == -1;
   }
 
