@@ -11,7 +11,7 @@ analyzer:
     unused_local_variable: error
     dead_code: error
   enable-experiment:
-    - extension-methods
+    - non-nullable
 
 # Lint rules and documentation, see http://dart-lang.github.io/linter/lints
 linter:
