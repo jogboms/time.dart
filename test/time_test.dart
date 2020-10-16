@@ -129,6 +129,313 @@ void main() {
         expect(tomorrow.wasYesterday, false);
       });
 
+      test('can handle isLeapYear', () {
+        expect(DateTime(2020, 10, 10).isLeapYear, true);
+        expect(DateTime(2019, 10, 10).isLeapYear, false);
+        expect(DateTime(2100, 01, 01).isLeapYear, false);
+        expect(DateTime(2000, 01, 01).isLeapYear, true);
+      });
+
+      test('can handle daysInMonth', () {
+        // Leap year.
+        expect(DateTime(2020, 01, 01).daysInMonth, 31);
+        expect(DateTime(2020, 02, 01).daysInMonth, 29);
+        expect(DateTime(2020, 03, 01).daysInMonth, 31);
+        expect(DateTime(2020, 04, 01).daysInMonth, 30);
+        expect(DateTime(2020, 05, 01).daysInMonth, 31);
+        expect(DateTime(2020, 06, 01).daysInMonth, 30);
+        expect(DateTime(2020, 07, 01).daysInMonth, 31);
+        expect(DateTime(2020, 08, 01).daysInMonth, 31);
+        expect(DateTime(2020, 09, 01).daysInMonth, 30);
+        expect(DateTime(2020, 10, 01).daysInMonth, 31);
+        expect(DateTime(2020, 11, 01).daysInMonth, 30);
+        expect(DateTime(2020, 12, 01).daysInMonth, 31);
+
+        // Non-leap year.
+        expect(DateTime(2019, 01, 01).daysInMonth, 31);
+        expect(DateTime(2019, 02, 01).daysInMonth, 28);
+        expect(DateTime(2019, 03, 01).daysInMonth, 31);
+        expect(DateTime(2019, 04, 01).daysInMonth, 30);
+        expect(DateTime(2019, 05, 01).daysInMonth, 31);
+        expect(DateTime(2019, 06, 01).daysInMonth, 30);
+        expect(DateTime(2019, 07, 01).daysInMonth, 31);
+        expect(DateTime(2019, 08, 01).daysInMonth, 31);
+        expect(DateTime(2019, 09, 01).daysInMonth, 30);
+        expect(DateTime(2019, 10, 01).daysInMonth, 31);
+        expect(DateTime(2019, 11, 01).daysInMonth, 30);
+        expect(DateTime(2019, 12, 01).daysInMonth, 31);
+      });
+
+      test('can handle isAtSameYearAs', () {
+        expect(
+          DateTime(2020, 10, 10).isAtSameYearAs(DateTime(2020, 09, 12)),
+          true,
+        );
+        expect(
+          DateTime(2019, 10, 10).isAtSameYearAs(DateTime(2020, 10, 10)),
+          false,
+        );
+      });
+
+      test('can handle isAtSameMonthAs', () {
+        expect(
+          DateTime(2020, 10, 18).isAtSameMonthAs(DateTime(2020, 10, 12)),
+          true,
+        );
+        expect(
+          DateTime(2020, 09, 10).isAtSameMonthAs(DateTime(2020, 10, 10)),
+          false,
+        );
+        expect(
+          DateTime(2019, 10, 10).isAtSameMonthAs(DateTime(2020, 10, 10)),
+          false,
+        );
+      });
+
+      test('can handle isAtSameDayAs', () {
+        expect(
+          DateTime(2020, 10, 06, 12).isAtSameDayAs(DateTime(2020, 10, 06, 15)),
+          true,
+        );
+        expect(
+          DateTime(2020, 10, 08, 15).isAtSameDayAs(DateTime(2020, 10, 06, 15)),
+          false,
+        );
+        expect(
+          DateTime(2020, 12, 06, 15).isAtSameDayAs(DateTime(2020, 10, 06, 15)),
+          false,
+        );
+        expect(
+          DateTime(2021, 12, 06, 15).isAtSameDayAs(DateTime(2020, 10, 06, 15)),
+          false,
+        );
+      });
+
+      test('can handle isAtSameHourAs', () {
+        expect(
+          DateTime(2020, 10, 06, 12, 15).isAtSameHourAs(
+            DateTime(2020, 10, 06, 12, 25),
+          ),
+          true,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15).isAtSameHourAs(
+            DateTime(2020, 10, 06, 15, 15),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15).isAtSameHourAs(
+            DateTime(2020, 10, 07, 12, 15),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15).isAtSameHourAs(
+            DateTime(2020, 11, 06, 12, 15),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15).isAtSameHourAs(
+            DateTime(2021, 10, 06, 12, 15),
+          ),
+          false,
+        );
+      });
+
+      test('can handle isAtSameMinuteAs', () {
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30).isAtSameMinuteAs(
+            DateTime(2020, 10, 06, 12, 15, 40),
+          ),
+          true,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30).isAtSameMinuteAs(
+            DateTime(2020, 10, 06, 12, 17, 30),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30).isAtSameMinuteAs(
+            DateTime(2020, 10, 06, 15, 15, 30),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30).isAtSameMinuteAs(
+            DateTime(2020, 10, 09, 12, 15, 30),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30).isAtSameMinuteAs(
+            DateTime(2020, 12, 06, 12, 15, 30),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30).isAtSameMinuteAs(
+            DateTime(2022, 10, 06, 12, 15, 30),
+          ),
+          false,
+        );
+      });
+
+      test('can handle isAtSameSecondAs', () {
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 100).isAtSameSecondAs(
+            DateTime(2020, 10, 06, 12, 15, 30, 150),
+          ),
+          true,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 100).isAtSameSecondAs(
+            DateTime(2020, 10, 06, 12, 15, 45, 100),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 100).isAtSameSecondAs(
+            DateTime(2020, 10, 06, 12, 25, 30, 100),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 100).isAtSameSecondAs(
+            DateTime(2020, 10, 06, 17, 15, 30, 100),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 100).isAtSameSecondAs(
+            DateTime(2020, 10, 02, 12, 15, 30, 100),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 100).isAtSameSecondAs(
+            DateTime(2020, 06, 06, 12, 15, 30, 100),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 100).isAtSameSecondAs(
+            DateTime(2016, 10, 06, 12, 15, 30, 100),
+          ),
+          false,
+        );
+      });
+
+      test('can handle isAtSameMillisecondAs', () {
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMillisecondAs(
+            DateTime(2020, 10, 06, 12, 15, 30, 150, 750),
+          ),
+          true,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMillisecondAs(
+            DateTime(2020, 10, 06, 12, 15, 30, 175, 600),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMillisecondAs(
+            DateTime(2020, 10, 06, 12, 15, 32, 150, 600),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMillisecondAs(
+            DateTime(2020, 10, 06, 12, 18, 30, 150, 600),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMillisecondAs(
+            DateTime(2020, 10, 06, 18, 15, 30, 150, 600),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMillisecondAs(
+            DateTime(2020, 10, 09, 12, 15, 30, 150, 600),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMillisecondAs(
+            DateTime(2020, 04, 06, 12, 15, 30, 150, 600),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMillisecondAs(
+            DateTime(1948, 10, 06, 12, 15, 30, 150, 600),
+          ),
+          false,
+        );
+      });
+
+      test('can handle isAtSameMicrosecondAs', () {
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMicrosecondAs(
+            DateTime(2020, 10, 06, 12, 15, 30, 150, 600),
+          ),
+          true,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMicrosecondAs(
+            DateTime(2020, 10, 06, 12, 15, 30, 150, 900),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMicrosecondAs(
+            DateTime(2020, 10, 06, 12, 15, 30, 160, 600),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMicrosecondAs(
+            DateTime(2020, 10, 06, 12, 15, 34, 150, 600),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMicrosecondAs(
+            DateTime(2020, 10, 06, 12, 12, 30, 150, 600),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMicrosecondAs(
+            DateTime(2020, 10, 06, 07, 15, 30, 150, 600),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMicrosecondAs(
+            DateTime(2020, 10, 09, 12, 15, 30, 150, 600),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMicrosecondAs(
+            DateTime(2020, 06, 06, 12, 15, 30, 150, 600),
+          ),
+          false,
+        );
+        expect(
+          DateTime(2020, 10, 06, 12, 15, 30, 150, 600).isAtSameMicrosecondAs(
+            DateTime(2030, 10, 06, 12, 15, 30, 150, 600),
+          ),
+          false,
+        );
+      });
+
       test('can iterate over DateTimes', () {
         final start = DateTime(2019);
         final end = start + 2.days;
