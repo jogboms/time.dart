@@ -106,7 +106,7 @@ extension DateTimeTimeExtension on DateTime {
   ///
   /// Does not account for timezones.
   bool isAtSameDayAs(DateTime other) =>
-      isAtSameMonthAs(other) && day == other.day;
+      isAtSameMonthAs(other) && day == other?.day;
 
   /// Returns true if [other] is at the same hour as [this].
   ///
@@ -114,7 +114,7 @@ extension DateTimeTimeExtension on DateTime {
   ///
   /// Does not account for timezones.
   bool isAtSameHourAs(DateTime other) =>
-      isAtSameDayAs(other) && hour == other.hour;
+      isAtSameDayAs(other) && hour == other?.hour;
 
   /// Returns true if [other] is at the same minute as [this].
   ///
@@ -122,7 +122,7 @@ extension DateTimeTimeExtension on DateTime {
   ///
   /// Does not account for timezones.
   bool isAtSameMinuteAs(DateTime other) =>
-      isAtSameHourAs(other) && minute == other.minute;
+      isAtSameHourAs(other) && minute == other?.minute;
 
   /// Returns true if [other] is at the same second as [this].
   ///
@@ -130,7 +130,7 @@ extension DateTimeTimeExtension on DateTime {
   ///
   /// Does not account for timezones.
   bool isAtSameSecondAs(DateTime other) =>
-      isAtSameMinuteAs(other) && second == other.second;
+      isAtSameMinuteAs(other) && second == other?.second;
 
   /// Returns true if [other] is at the same millisecond as [this].
   ///
@@ -139,7 +139,7 @@ extension DateTimeTimeExtension on DateTime {
   ///
   /// Does not account for timezones.
   bool isAtSameMillisecondAs(DateTime other) =>
-      isAtSameSecondAs(other) && millisecond == other.millisecond;
+      isAtSameSecondAs(other) && millisecond == other?.millisecond;
 
   /// Returns true if [other] is at the same microsecond as [this].
   ///
