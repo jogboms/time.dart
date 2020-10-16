@@ -67,6 +67,7 @@ extension DateTimeTimeExtension on DateTime {
   }
 
   /// Returns the amount of days that are in this month.
+  ///
   /// Accounts for leap years.
   int get daysInMonth {
     final days = [
