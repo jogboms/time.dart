@@ -53,18 +53,9 @@ extension DateTimeTimeExtension on DateTime {
   }
 
   /// Returns true if this year is a leap year.
-  bool get isLeapYear {
-    if (year % 4 == 0) {
-      if (year % 100 == 0) {
-        if (year % 400 == 0) {
-          return true;
-        }
-        return false;
-      }
-      return true;
-    }
-    return false;
-  }
+  bool get isLeapYear =>
+      // Leap years are used since 1582.
+      year >= 1582 && year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
 
   /// Returns the amount of days that are in this month.
   ///
