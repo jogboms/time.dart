@@ -134,6 +134,8 @@ void main() {
         expect(DateTime(2019, 10, 10).isLeapYear, false);
         expect(DateTime(2100, 01, 01).isLeapYear, false);
         expect(DateTime(2000, 01, 01).isLeapYear, true);
+        expect(DateTime(1000, 01, 01).isLeapYear, false);
+        expect(DateTime(1584, 01, 01).isLeapYear, true);
       });
 
       test('can handle daysInMonth', () {
