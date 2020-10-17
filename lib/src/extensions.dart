@@ -149,7 +149,7 @@ extension DateTimeTimeExtension on DateTime {
   ///
   /// Does not account for timezones.
   bool isAtSameMicrosecondAs(DateTime other) =>
-      isAtSameMillisecondAs(other) && microsecond == other.microsecond;
+      isAtSameMillisecondAs(other) && microsecond == other?.microsecond;
 
   static int _calculateDifference(DateTime date) {
     final now = DateTime.now();
