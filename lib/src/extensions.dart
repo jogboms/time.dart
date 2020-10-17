@@ -93,7 +93,7 @@ extension DateTimeTimeExtension on DateTime {
   /// Does not account for timezones.
   bool isAtSameYearAs(DateTime other) => year == other?.year;
 
-  /// Returns true if [other] is in the same month as [this]/.
+  /// Returns true if [other] is in the same month as [this].
   ///
   /// This means the exact month, including year.
   ///
