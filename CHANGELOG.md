@@ -1,3 +1,6 @@
+## 1.5.0-nullsafety.0
+- Upgraded to null-safe dart
+
 ## 1.4.0
 
 - Introduce `isToday` extension to `Duration`
