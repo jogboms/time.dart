@@ -1,3 +1,6 @@
+## 1.4.0-nullsafety.0
+- Upgraded to null-safe dart
+
 ## 1.3.0
 
 - Introduce `delay` extension to `Duration`
