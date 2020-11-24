@@ -1,3 +1,9 @@
+## 1.4.0
+
+- Introduce `isToday` extension to `Duration`
+- Introduce `isTomorrow` extension to `DateTime`
+- Introduce `wasYesterday` extension to `DateTime`
+
 ## 1.3.0
 
 - Introduce `delay` extension to `Duration`
