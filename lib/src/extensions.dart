@@ -52,6 +52,96 @@ extension DateTimeTimeExtension on DateTime {
     return _calculateDifference(this) == -1;
   }
 
+  /// Returns true if this year is a leap year.
+  bool get isLeapYear =>
+      // Leap years are used since 1582.
+      year >= 1582 && year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+
+  /// Returns the amount of days that are in this month.
+  ///
+  /// Accounts for leap years.
+  int get daysInMonth {
+    final days = [
+      31, // January
+      if (isLeapYear) 29 else 28, // February
+      31, // March
+      30, // April
+      31, // May
+      30, // June
+      31, // July
+      31, // August
+      30, // September
+      31, // October
+      30, // November
+      31, // December
+    ];
+
+    return days[month - 1];
+  }
+
+  /// Returns true if [other] is in the same year as [this].
+  ///
+  /// Does not account for timezones.
+  bool isAtSameYearAs(DateTime other) => year == other?.year;
+
+  /// Returns true if [other] is in the same month as [this].
+  ///
+  /// This means the exact month, including year.
+  ///
+  /// Does not account for timezones.
+  bool isAtSameMonthAs(DateTime other) =>
+      isAtSameYearAs(other) && month == other?.month;
+
+  /// Returns true if [other] is on the same day as [this].
+  ///
+  /// This means the exact day, including year and month.
+  ///
+  /// Does not account for timezones.
+  bool isAtSameDayAs(DateTime other) =>
+      isAtSameMonthAs(other) && day == other?.day;
+
+  /// Returns true if [other] is at the same hour as [this].
+  ///
+  /// This means the exact hour, including year, month and day.
+  ///
+  /// Does not account for timezones.
+  bool isAtSameHourAs(DateTime other) =>
+      isAtSameDayAs(other) && hour == other?.hour;
+
+  /// Returns true if [other] is at the same minute as [this].
+  ///
+  /// This means the exact minute, including year, month, day and hour.
+  ///
+  /// Does not account for timezones.
+  bool isAtSameMinuteAs(DateTime other) =>
+      isAtSameHourAs(other) && minute == other?.minute;
+
+  /// Returns true if [other] is at the same second as [this].
+  ///
+  /// This means the exact second, including year, month, day, hour and minute.
+  ///
+  /// Does not account for timezones.
+  bool isAtSameSecondAs(DateTime other) =>
+      isAtSameMinuteAs(other) && second == other?.second;
+
+  /// Returns true if [other] is at the same millisecond as [this].
+  ///
+  /// This means the exact millisecond,
+  /// including year, month, day, hour, minute and second.
+  ///
+  /// Does not account for timezones.
+  bool isAtSameMillisecondAs(DateTime other) =>
+      isAtSameSecondAs(other) && millisecond == other?.millisecond;
+
+  /// Returns true if [other] is at the same microsecond as [this].
+  ///
+  /// This means the exact microsecond,
+  /// including year, month, day, hour, minute, second and millisecond.
+  ///
+  /// Does not account for timezones.
+  bool isAtSameMicrosecondAs(DateTime other) =>
+      isAtSameMillisecondAs(other) && microsecond == other?.microsecond;
+
   static int _calculateDifference(DateTime date) {
     final now = DateTime.now();
     return DateTime(date.year, date.month, date.day).difference(DateTime(now.year, now.month, now.day)).inDays;
