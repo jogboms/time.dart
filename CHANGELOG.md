@@ -1,3 +1,22 @@
+## 1.4.1
+
+- Introduce `isAtSameYearAs` extension to `DateTime`
+- Introduce `isAtSameMonthAs` extension to `DateTime`
+- Introduce `isAtSameDayAs` extension to `DateTime`
+- Introduce `isAtSameHourAs` extension to `DateTime`
+- Introduce `isAtSameMinuteAs` extension to `DateTime`
+- Introduce `isAtSameMillisecondAs` extension to `DateTime`
+- Introduce `isAtSameMicrosecondAs` extension to `DateTime`
+
+```dart
+final DateTime specificDate = DateTime(2021, 01, 01);
+final DateTime otherDate = DateTime(2021, 02, 01);
+
+print(specificDate.isAtSameYearAs(otherDate)); // true
+print(specificDate.isAtSameMonthAs(otherDate)); // false
+print(specificDate.isAtSameDayAs(otherDate)); // false
+```
+
 ## 1.4.0
 
 - Introduce `isToday` extension to `Duration`

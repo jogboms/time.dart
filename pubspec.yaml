@@ -1,6 +1,6 @@
 name: time
 description: Type-safe DateTime and Duration calculations, powered by extensions.
-version: 1.4.0
+version: 1.4.1
 homepage: https://github.com/jogboms/time.dart
 author: Jogboms <jeremiahogbomo@gmail.com>
 
