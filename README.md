@@ -65,6 +65,17 @@ final DateTime end = start + 1.weeks;
 final DateTime tuesday = start.to(end).firstWhere((date) => date.weekday == DateTime.tuesday);
 ```
 
+Granular comparison between `DateTime` fields:
+
+```dart
+final DateTime specificDate = DateTime(2021, 01, 01);
+final DateTime otherDate = DateTime(2021, 02, 01);
+
+print(specificDate.isAtSameYearAs(otherDate)); // true
+print(specificDate.isAtSameMonthAs(otherDate)); // false
+print(specificDate.isAtSameDayAs(otherDate)); // false
+```
+
 You can also delay code execution:
 
 ```dart
