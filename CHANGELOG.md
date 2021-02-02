@@ -6,6 +6,8 @@
 - Introduce `isAtSameMinuteAs` extension to `DateTime`
 - Introduce `isAtSameMillisecondAs` extension to `DateTime`
 - Introduce `isAtSameMicrosecondAs` extension to `DateTime`
+- Introduce `isLeapYear` extension to `DateTime`
+- Introduce `daysInMonth` extension to `DateTime`
 
 ```dart
 final DateTime specificDate = DateTime(2021, 01, 01);
