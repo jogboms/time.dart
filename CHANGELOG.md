@@ -1,4 +1,5 @@
 ## 1.5.0-nullsafety.1
+
 - Introduce `isAtSameYearAs` extension to `DateTime`
 - Introduce `isAtSameMonthAs` extension to `DateTime`
 - Introduce `isAtSameDayAs` extension to `DateTime`
@@ -17,6 +18,18 @@ print(specificDate.isAtSameYearAs(otherDate)); // true
 print(specificDate.isAtSameMonthAs(otherDate)); // false
 print(specificDate.isAtSameDayAs(otherDate)); // false
 ```
+
+## 1.4.1
+
+- Introduce `isAtSameYearAs` extension to `DateTime`
+- Introduce `isAtSameMonthAs` extension to `DateTime`
+- Introduce `isAtSameDayAs` extension to `DateTime`
+- Introduce `isAtSameHourAs` extension to `DateTime`
+- Introduce `isAtSameMinuteAs` extension to `DateTime`
+- Introduce `isAtSameMillisecondAs` extension to `DateTime`
+- Introduce `isAtSameMicrosecondAs` extension to `DateTime`
+- Introduce `isLeapYear` extension to `DateTime`
+- Introduce `daysInMonth` extension to `DateTime`
 
 ## 1.5.0-nullsafety.0
 - Migrated to null-safe dart
