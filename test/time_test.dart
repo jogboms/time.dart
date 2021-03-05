@@ -530,10 +530,6 @@ void main() {
       expect(7.days.fromNow, _isAbout(DateTime.now() + 7.days));
     });
 
-    test('can still use later until 2.0.0', () {
-      expect(7.days.later, _isAbout(DateTime.now() + 7.days));
-    });
-
     test('can be converted into a previous DateTime', () {
       expect(7.days.ago, _isAbout(DateTime.now() - 7.days));
     });
