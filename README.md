@@ -1,6 +1,7 @@
 # ⏰ Time
 
-[![Build Status - Travis](https://travis-ci.org/jogboms/time.dart.svg?branch=master)](https://travis-ci.org/jogboms/time.dart) [![codecov](https://codecov.io/gh/jogboms/time.dart/branch/master/graph/badge.svg)](https://codecov.io/gh/jogboms/time.dart) [![pub package](https://img.shields.io/pub/v/time.svg)](https://pub.dartlang.org/packages/time)
+
+[![Build](https://github.com/jogboms/time.dart/actions/workflows/build.yml/badge.svg)](https://github.com/jogboms/time.dart/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/jogboms/time.dart/branch/master/graph/badge.svg)](https://codecov.io/gh/jogboms/time.dart) [![pub package](https://img.shields.io/pub/v/time.svg)](https://pub.dartlang.org/packages/time)
 
 With shiny extensions, if you have ever written something like this, then look no further:
 

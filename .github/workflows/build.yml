@@ -1,0 +1,40 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    # runs the CI weekly
+    - cron: "0 0 * * 0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: dev
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Check format
+        run: dart format --output=none --set-exit-if-changed -l 120 lib
+
+      - name: Analyze
+        run: dart analyze lib
+
+      - name: Run tests
+        run: dart test --coverage coverage
+
+      - name: Coverage
+        run: dart run coverage:format_coverage -l -i ./coverage/test/time_test.dart.vm.json -o ./coverage/lcov.info
+
+      - name: Upload coverage to codecov
+        uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
