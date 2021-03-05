@@ -1,3 +1,7 @@
+## 2.0.0
+
+- Migrate to null-safety
+
 ## 1.5.0-nullsafety.1
 
 - Introduce `isAtSameYearAs` extension to `DateTime`
