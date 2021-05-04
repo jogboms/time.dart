@@ -79,6 +79,13 @@ void main() {
         );
       });
 
+      test('can subtract DateTime', () {
+        expect(
+          DateTime(2019, 1, 1, 0, 0, 30) - DateTime(2019, 1, 1, 0, 0, 0), 
+          30.seconds);
+      });
+
+
       test('can add Durations', () {
         expect(
           DateTime(2019, 1, 1, 0, 0, 30) - 30.seconds,
