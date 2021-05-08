@@ -186,18 +186,27 @@ extension DateTimeTimeExtension on DateTime {
     int? second,
     int? millisecond,
     int? microsecond,
-  }) {
-    return DateTime(
-      year ?? this.year,
-      month ?? this.month,
-      day ?? this.day,
-      hour ?? this.hour,
-      minute ?? this.minute,
-      second ?? this.second,
-      millisecond ?? this.millisecond,
-      microsecond ?? this.microsecond,
-    );
-  }
+  }) =>
+      isUtc
+          ? DateTime.utc(
+          year ?? this.year,
+          month ?? this.month,
+          day ?? this.day,
+          hour ?? this.hour,
+          minute ?? this.minute,
+          second ?? this.second,
+          millisecond ?? this.millisecond,
+          microsecond ?? this.microsecond)
+          : DateTime(
+        year ?? this.year,
+        month ?? this.month,
+        day ?? this.day,
+        hour ?? this.hour,
+        minute ?? this.minute,
+        second ?? this.second,
+        millisecond ?? this.millisecond,
+        microsecond ?? this.microsecond,
+      );
 }
 
 extension DurationTimeExtension on Duration {
