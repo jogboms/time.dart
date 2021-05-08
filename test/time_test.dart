@@ -510,6 +510,14 @@ void main() {
         final microsecond = initial.copyWith(microsecond: 12);
         expect(microsecond.microsecond, 12);
       });
+
+      test('copyWith should save isUtc', () async {
+        final now = DateTime.now().toUtc();
+        expect(now.isUtc, isTrue);
+
+        final later = now.copyWith(hour: now.hour + 3);
+        expect(later.isUtc, isTrue);
+      });
     });
   });
 
