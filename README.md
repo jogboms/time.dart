@@ -12,7 +12,7 @@ final DateTime fourHoursFromNow = DateTime.now() + Duration(hours: 4);
 ## 🎖 Installation
 ```yaml
 dependencies:
-  time: "^2.0.0"
+  time: "^2.0.1"
 ```
 
 ### ⚡ Import
