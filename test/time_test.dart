@@ -489,26 +489,34 @@ void main() {
           expect(expected.millisecond, 0);
           expect(expected.microsecond, 12);
         });
-      });
 
-      test('with null values', () {
-        final initial = DateTime(2019, 2, 4, 24, 50, 45, 1, 1);
-        final year = initial.copyWith(year: 2021);
-        expect(year.year, 2021);
-        final month = initial.copyWith(month: 10);
-        expect(month.month, 10);
-        final day = initial.copyWith(day: 28);
-        expect(day.day, 28);
-        final hour = initial.copyWith(hour: 12);
-        expect(hour.hour, 12);
-        final minute = initial.copyWith(minute: 45);
-        expect(minute.minute, 45);
-        final second = initial.copyWith(second: 10);
-        expect(second.second, 10);
-        final millisecond = initial.copyWith(millisecond: 0);
-        expect(millisecond.millisecond, 0);
-        final microsecond = initial.copyWith(microsecond: 12);
-        expect(microsecond.microsecond, 12);
+        test('with null values', () {
+          final initial = DateTime(2019, 2, 4, 24, 50, 45, 1, 1);
+          final year = initial.copyWith(year: 2021);
+          expect(year.year, 2021);
+          final month = initial.copyWith(month: 10);
+          expect(month.month, 10);
+          final day = initial.copyWith(day: 28);
+          expect(day.day, 28);
+          final hour = initial.copyWith(hour: 12);
+          expect(hour.hour, 12);
+          final minute = initial.copyWith(minute: 45);
+          expect(minute.minute, 45);
+          final second = initial.copyWith(second: 10);
+          expect(second.second, 10);
+          final millisecond = initial.copyWith(millisecond: 0);
+          expect(millisecond.millisecond, 0);
+          final microsecond = initial.copyWith(microsecond: 12);
+          expect(microsecond.microsecond, 12);
+        });
+
+        test('copyWith should save isUtc', () async {
+          final now = DateTime.now().toUtc();
+          expect(now.isUtc, isTrue);
+
+          final later = now.copyWith(hour: now.hour + 3);
+          expect(later.isUtc, isTrue);
+        });
       });
     });
   });
