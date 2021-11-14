@@ -11,4 +11,4 @@ dev_dependencies:
   test: ^1.16.5
   test_coverage:
     git:
-      url: https://github.com/jogboms/test-coverage.git
+      url: https://github.com/timsneath/test-coverage.git
