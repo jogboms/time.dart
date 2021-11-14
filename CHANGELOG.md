@@ -1,3 +1,7 @@
+## 2.0.1
+
+- Implement utc support for `copyWith` operation
+
 ## 2.0.0
 
 - Migrate to null-safety
