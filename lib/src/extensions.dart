@@ -1,3 +1,5 @@
+import 'package:clock/clock.dart';
+
 extension NumTimeExtension<T extends num> on T {
   /// Returns a Duration represented in weeks
   Duration get weeks => days * DurationTimeExtension.daysPerWeek;
@@ -136,7 +138,7 @@ extension DateTimeTimeExtension on DateTime {
   bool isAtSameMicrosecondAs(DateTime other) => isAtSameMillisecondAs(other) && microsecond == other.microsecond;
 
   static int _calculateDifference(DateTime date) {
-    final now = DateTime.now();
+    final now = clock.now();
     return DateTime(date.year, date.month, date.day).difference(DateTime(now.year, now.month, now.day)).inDays;
   }
 
@@ -212,10 +214,10 @@ extension DurationTimeExtension on Duration {
   int get inWeeks => (inDays / daysPerWeek).ceil();
 
   /// Adds the Duration to the current DateTime and returns a DateTime in the future
-  DateTime get fromNow => DateTime.now() + this;
+  DateTime get fromNow => clock.now() + this;
 
   /// Subtracts the Duration from the current DateTime and returns a DateTime in the past
-  DateTime get ago => DateTime.now() - this;
+  DateTime get ago => clock.now() - this;
 
   /// Returns a Future.delayed from this
   Future<void> get delay => Future.delayed(this);
