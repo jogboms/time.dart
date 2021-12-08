@@ -1,7 +1,10 @@
+import 'package:clock/clock.dart';
 import 'package:test/test.dart';
 import 'package:time/time.dart';
 
 void main() {
+  final date = DateTime(2000, 1, 1);
+
   group('TimeExtension', () {
     group('Integers', () {
       test('can be converted into weeks', () {
@@ -103,30 +106,36 @@ void main() {
       });
 
       test('can handle isToday', () {
-        final today = DateTime.now();
-        final yesterday = DateTime.now().subtract(Duration(days: 1));
-        final tomorrow = DateTime.now().add(Duration(days: 1));
-        expect(today.isToday, true);
-        expect(yesterday.isToday, false);
-        expect(tomorrow.isToday, false);
+        final today = date;
+        withClock(Clock.fixed(today), () {
+          final yesterday = today.subtract(Duration(days: 1));
+          final tomorrow = today.add(Duration(days: 1));
+          expect(today.isToday, true);
+          expect(yesterday.isToday, false);
+          expect(tomorrow.isToday, false);
+        });
       });
 
       test('can handle isTomorrow', () {
-        final today = DateTime.now();
-        final yesterday = DateTime.now().subtract(Duration(days: 1));
-        final tomorrow = DateTime.now().add(Duration(days: 1));
-        expect(today.isTomorrow, false);
-        expect(yesterday.isTomorrow, false);
-        expect(tomorrow.isTomorrow, true);
+        final today = date;
+        withClock(Clock.fixed(today), () {
+          final yesterday = today.subtract(Duration(days: 1));
+          final tomorrow = today.add(Duration(days: 1));
+          expect(today.isTomorrow, false);
+          expect(yesterday.isTomorrow, false);
+          expect(tomorrow.isTomorrow, true);
+        });
       });
 
       test('can handle wasYesterday', () {
-        final today = DateTime.now();
-        final yesterday = DateTime.now().subtract(Duration(days: 1));
-        final tomorrow = DateTime.now().add(Duration(days: 1));
-        expect(today.wasYesterday, false);
-        expect(yesterday.wasYesterday, true);
-        expect(tomorrow.wasYesterday, false);
+        final today = date;
+        withClock(Clock.fixed(today), () {
+          final yesterday = today.subtract(Duration(days: 1));
+          final tomorrow = today.add(Duration(days: 1));
+          expect(today.wasYesterday, false);
+          expect(yesterday.wasYesterday, true);
+          expect(tomorrow.wasYesterday, false);
+        });
       });
 
       test('can handle isLeapYear', () {
@@ -535,11 +544,15 @@ void main() {
     });
 
     test('can be converted into a future DateTime', () {
-      expect(7.days.fromNow, _isAbout(DateTime.now() + 7.days));
+      withClock(Clock.fixed(date), () {
+        expect(7.days.fromNow, date + 7.days);
+      });
     });
 
     test('can be converted into a previous DateTime', () {
-      expect(7.days.ago, _isAbout(DateTime.now() - 7.days));
+      withClock(Clock.fixed(date), () {
+        expect(7.days.ago, date - 7.days);
+      });
     });
 
     test('Can be used to pause the program flow', () async {
@@ -552,9 +565,3 @@ void main() {
     });
   });
 }
-
-// Checks if the two times returned a *just* about equal. Since `fromNow` and
-// `ago` use DateTime.now(), we can't create an expected condition that is
-// exactly equal.
-Matcher _isAbout(DateTime expected) =>
-    predicate<DateTime>((dateTime) => dateTime.millisecondsSinceEpoch - expected.millisecondsSinceEpoch < 1);
