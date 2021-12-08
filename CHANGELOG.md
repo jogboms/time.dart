@@ -1,3 +1,7 @@
+## 2.1.0
+
+- Introduce `package:clock` dependency for more predictable testing
+
 ## 2.0.1
 
 - Implement utc support for `copyWith` operation
