@@ -204,6 +204,24 @@ extension DateTimeTimeExtension on DateTime {
             microsecond ?? this.microsecond,
           );
   }
+
+  /// Returns the Monday of this week
+  DateTime get firstDayOfWeek => DateTime.utc(year, month, day + 1 - weekday);
+
+  /// Returns the Sunday of this week
+  DateTime get lastDayOfWeek => DateTime.utc(year, month, day + 7 - weekday);  
+
+  /// Returns the first day of this month
+  DateTime get firstDayOfMonth => DateTime.utc(year, month, 1);
+
+  /// Returns the last day of this month (considers leap years)
+  DateTime get lastDayOfMonth => DateTime.utc(year, month + 1, 0);
+
+  /// Returns the first day of this year
+  DateTime get firstDayOfYear => DateTime.utc(year, 1, 1);
+
+  /// Returns the last day of this year
+  DateTime get lastDayOfYear => DateTime.utc(year, 12, 31);
 }
 
 extension DurationTimeExtension on Duration {
