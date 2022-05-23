@@ -527,6 +527,58 @@ void main() {
           expect(later.isUtc, isTrue);
         });
       });
+
+      group('can get first/last days', () {
+        test('first day of week', () {
+          final initial = DateTime(2022, 5, 20);
+          final expected = DateTime(2022, 5, 16);
+          expect(initial.firstDayOfWeek, expected);
+        });
+
+        test('last day of week', () {
+          final initial = DateTime(2022, 5, 20);
+          final expected = DateTime(2022, 5, 22);
+          expect(initial.lastDayOfWeek, expected);
+        });
+
+        test('first day of month', () {
+          final initial = DateTime(2022, 5, 20);
+          final expected = DateTime(2022, 5, 1);
+          expect(initial.firstDayOfMonth, expected);
+        });
+
+        group('last day of month', (){
+          test('last day of month', () {
+            final initial = DateTime(2022, 5, 20);
+            final expected = DateTime(2022, 5, 31);
+            expect(initial.lastDayOfMonth, expected);
+          });
+          test('february not leap year', () {
+            final initial = DateTime(2022, 2, 20);
+            final expected = DateTime(2022, 2, 28);
+            expect(initial.lastDayOfMonth, expected);
+          });
+
+          test('february leap year', () {
+            final initial = DateTime(2020, 2, 20);
+            final expected = DateTime(2020, 2, 29);
+            expect(initial.lastDayOfMonth, expected);
+          });
+
+        });
+
+        test('first day of year', () {
+          final initial = DateTime(2022, 5, 20);
+          final expected = DateTime(2022, 1, 1);
+          expect(initial.firstDayOfYear, expected);
+        });
+
+        test('last day of year', () {
+          final initial = DateTime(2022, 5, 20);
+          final expected = DateTime(2022, 12, 31);
+          expect(initial.lastDayOfYear, expected);
+        });
+      });
     });
   });
 
