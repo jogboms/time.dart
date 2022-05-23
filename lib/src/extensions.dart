@@ -17,13 +17,16 @@ extension NumTimeExtension<T extends num> on T {
   Duration get seconds => milliseconds * Duration.millisecondsPerSecond;
 
   /// Returns a Duration represented in milliseconds
-  Duration get milliseconds => Duration(microseconds: (this * Duration.microsecondsPerMillisecond).toInt());
+  Duration get milliseconds => Duration(
+      microseconds: (this * Duration.microsecondsPerMillisecond).toInt());
 
   /// Returns a Duration represented in microseconds
-  Duration get microseconds => milliseconds ~/ Duration.microsecondsPerMillisecond;
+  Duration get microseconds =>
+      milliseconds ~/ Duration.microsecondsPerMillisecond;
 
   /// Returns a Duration represented in nanoseconds
-  Duration get nanoseconds => microseconds ~/ DurationTimeExtension.nanosecondsPerMicrosecond;
+  Duration get nanoseconds =>
+      microseconds ~/ DurationTimeExtension.nanosecondsPerMicrosecond;
 }
 
 extension DateTimeTimeExtension on DateTime {
@@ -91,35 +94,40 @@ extension DateTimeTimeExtension on DateTime {
   /// This means the exact month, including year.
   ///
   /// Does not account for timezones.
-  bool isAtSameMonthAs(DateTime other) => isAtSameYearAs(other) && month == other.month;
+  bool isAtSameMonthAs(DateTime other) =>
+      isAtSameYearAs(other) && month == other.month;
 
   /// Returns true if [other] is on the same day as [this].
   ///
   /// This means the exact day, including year and month.
   ///
   /// Does not account for timezones.
-  bool isAtSameDayAs(DateTime other) => isAtSameMonthAs(other) && day == other.day;
+  bool isAtSameDayAs(DateTime other) =>
+      isAtSameMonthAs(other) && day == other.day;
 
   /// Returns true if [other] is at the same hour as [this].
   ///
   /// This means the exact hour, including year, month and day.
   ///
   /// Does not account for timezones.
-  bool isAtSameHourAs(DateTime other) => isAtSameDayAs(other) && hour == other.hour;
+  bool isAtSameHourAs(DateTime other) =>
+      isAtSameDayAs(other) && hour == other.hour;
 
   /// Returns true if [other] is at the same minute as [this].
   ///
   /// This means the exact minute, including year, month, day and hour.
   ///
   /// Does not account for timezones.
-  bool isAtSameMinuteAs(DateTime other) => isAtSameHourAs(other) && minute == other.minute;
+  bool isAtSameMinuteAs(DateTime other) =>
+      isAtSameHourAs(other) && minute == other.minute;
 
   /// Returns true if [other] is at the same second as [this].
   ///
   /// This means the exact second, including year, month, day, hour and minute.
   ///
   /// Does not account for timezones.
-  bool isAtSameSecondAs(DateTime other) => isAtSameMinuteAs(other) && second == other.second;
+  bool isAtSameSecondAs(DateTime other) =>
+      isAtSameMinuteAs(other) && second == other.second;
 
   /// Returns true if [other] is at the same millisecond as [this].
   ///
@@ -127,7 +135,8 @@ extension DateTimeTimeExtension on DateTime {
   /// including year, month, day, hour, minute and second.
   ///
   /// Does not account for timezones.
-  bool isAtSameMillisecondAs(DateTime other) => isAtSameSecondAs(other) && millisecond == other.millisecond;
+  bool isAtSameMillisecondAs(DateTime other) =>
+      isAtSameSecondAs(other) && millisecond == other.millisecond;
 
   /// Returns true if [other] is at the same microsecond as [this].
   ///
@@ -135,11 +144,14 @@ extension DateTimeTimeExtension on DateTime {
   /// including year, month, day, hour, minute, second and millisecond.
   ///
   /// Does not account for timezones.
-  bool isAtSameMicrosecondAs(DateTime other) => isAtSameMillisecondAs(other) && microsecond == other.microsecond;
+  bool isAtSameMicrosecondAs(DateTime other) =>
+      isAtSameMillisecondAs(other) && microsecond == other.microsecond;
 
   static int _calculateDifference(DateTime date) {
     final now = clock.now();
-    return DateTime(date.year, date.month, date.day).difference(DateTime(now.year, now.month, now.day)).inDays;
+    return DateTime(date.year, date.month, date.day)
+        .difference(DateTime(now.year, now.month, now.day))
+        .inDays;
   }
 
   /// Returns a range of dates to [to], exclusive start, inclusive end
@@ -148,7 +160,8 @@ extension DateTimeTimeExtension on DateTime {
   /// final end = DateTime(2020);
   /// start.to(end, by: const Duration(days: 365)).forEach(print); // 2020-01-01 00:00:00.000
   /// ```
-  Iterable<DateTime> to(DateTime to, {Duration by = const Duration(days: 1)}) sync* {
+  Iterable<DateTime> to(DateTime to,
+      {Duration by = const Duration(days: 1)}) sync* {
     if (isAtSameMomentAs(to)) return;
 
     if (isBefore(to)) {
@@ -206,22 +219,30 @@ extension DateTimeTimeExtension on DateTime {
   }
 
   /// Returns the Monday of this week
-  DateTime get firstDayOfWeek => DateTime.utc(year, month, day + 1 - weekday);
+  DateTime get firstDayOfWeek => isUtc
+      ? DateTime.utc(year, month, day + 1 - weekday)
+      : DateTime(year, month, day + 1 - weekday);
 
   /// Returns the Sunday of this week
-  DateTime get lastDayOfWeek => DateTime.utc(year, month, day + 7 - weekday);  
+  DateTime get lastDayOfWeek => isUtc
+      ? DateTime.utc(year, month, day + 7 - weekday)
+      : DateTime(year, month, day + 7 - weekday);
 
   /// Returns the first day of this month
-  DateTime get firstDayOfMonth => DateTime.utc(year, month, 1);
+  DateTime get firstDayOfMonth =>
+      isUtc ? DateTime.utc(year, month, 1) : DateTime(year, month, 1);
 
   /// Returns the last day of this month (considers leap years)
-  DateTime get lastDayOfMonth => DateTime.utc(year, month + 1, 0);
+  DateTime get lastDayOfMonth =>
+      isUtc ? DateTime.utc(year, month + 1, 0) : DateTime(year, month + 1, 0);
 
   /// Returns the first day of this year
-  DateTime get firstDayOfYear => DateTime.utc(year, 1, 1);
+  DateTime get firstDayOfYear =>
+      isUtc ? DateTime.utc(year, 1, 1) : DateTime(year, 1, 1);
 
   /// Returns the last day of this year
-  DateTime get lastDayOfYear => DateTime.utc(year, 12, 31);
+  DateTime get lastDayOfYear =>
+      isUtc ? DateTime.utc(year, 12, 31) : DateTime(year, 12, 31);
 }
 
 extension DurationTimeExtension on Duration {
