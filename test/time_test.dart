@@ -725,13 +725,36 @@ void main() {
             );
           },
         );
-        test(
-          'returns it when is longer than min and shorter than max',
+        group(
+          'returns it',
           () {
             final it = Duration(days: 0);
             final min = Duration(days: -5);
             final max = Duration(days: 5);
-            expect(it.clamp(min: min, max: max), equals(it));
+            test(
+              'when both min and max are null',
+              () {
+                expect(it.clamp(), equals(it));
+              },
+            );
+            test(
+              'when is longer than min and max is null',
+              () {
+                expect(it.clamp(min: min), equals(it));
+              },
+            );
+            test(
+              'when is shorter than max and min is null',
+              () {
+                expect(it.clamp(max: max), equals(it));
+              },
+            );
+            test(
+              'when is longer than min and shorter than max',
+              () {
+                expect(it.clamp(min: min, max: max), equals(it));
+              },
+            );
           },
         );
         test(
