@@ -224,6 +224,42 @@ extension DateTimeTimeExtension on DateTime {
 
   /// Returns the last day of this year
   DateTime get lastDayOfYear => isUtc ? DateTime.utc(year, 12, 31) : DateTime(year, 12, 31);
+
+  /// Returns this [DateTime] clamped to be in the range [min]-[max].
+  ///
+  /// The comparison is done using [compareTo].
+  ///
+  /// The arguments [min] and [max] must form a valid range where
+  /// `min.compareTo(max) <= 0`.
+  ///
+  /// Example:
+  /// ```dart
+  /// var result = DateTime(2022, DateTime.october, 15).clamp(
+  ///   min: DateTime(2022, DateTime.september, 1),
+  ///   max: DateTime(2022, DateTime.september, 30),
+  /// ); // DateTime(2022, DateTime.september, 30);
+  /// result = DateTime(2022, DateTime.august, 21).clamp(
+  ///   min: DateTime(2022, DateTime.september, 15),
+  ///   max: DateTime(2022, DateTime.september, 30),
+  /// ); // DateTime(2022, DateTime.september, 15);
+  /// result = DateTime(2022, DateTime.september, 1).clamp(
+  ///   min: DateTime(2022, DateTime.august, 1),
+  ///   max: DateTime(2022, DateTime.september, 30),
+  /// ); // DateTime(2022, DateTime.september, 1);
+  /// ```
+  DateTime clamp({DateTime? min, DateTime? max}) {
+    assert(
+      ((min != null) && (max != null)) ? min.compareTo(max).isNegative : true,
+      'DateTime min has to be before max\n(min: $min - max: $max)',
+    );
+    if ((min != null) && compareTo(min).isNegative) {
+      return min;
+    } else if ((max != null) && max.compareTo(this).isNegative) {
+      return max;
+    } else {
+      return this;
+    }
+  }
 }
 
 extension DurationTimeExtension on Duration {
@@ -241,4 +277,40 @@ extension DurationTimeExtension on Duration {
 
   /// Returns a Future.delayed from this
   Future<void> get delay => Future.delayed(this);
+
+  /// Returns this [Duration] clamped to be in the range [min]-[max].
+  ///
+  /// The comparison is done using [compareTo].
+  ///
+  /// The arguments [min] and [max] must form a valid range where
+  /// `min.compareTo(max) <= 0`.
+  ///
+  /// Example:
+  /// ```dart
+  /// var result = Duration(days: 10, hours: 12).clamp(
+  ///   min: Duration(days: 5),
+  ///   max: Duration(days: 10),
+  /// ); // Duration(days: 10)
+  /// result = Duration(hours: 18).clamp(
+  ///   min: Duration(days: 5),
+  ///   max: Duration(days: 10),
+  /// ); // Duration(days: 5)
+  /// result = Duration(days: 0).clamp(
+  ///   min: Duration(days: -5),
+  ///   max: Duration(days: 5),
+  /// ); // Duration(days: 0)
+  /// ```
+  Duration clamp({Duration? min, Duration? max}) {
+    assert(
+      ((min != null) && (max != null)) ? min.compareTo(max).isNegative : true,
+      'Duration min has to be shorter than max\n(min: $min - max: $max)',
+    );
+    if ((min != null) && compareTo(min).isNegative) {
+      return min;
+    } else if ((max != null) && max.compareTo(this).isNegative) {
+      return max;
+    } else {
+      return this;
+    }
+  }
 }
