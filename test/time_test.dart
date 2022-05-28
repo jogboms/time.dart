@@ -623,13 +623,36 @@ void main() {
             );
           },
         );
-        test(
-          'returns it when is after min and before max',
+        group(
+          'returns it',
           () {
             final it = DateTime(2022, DateTime.september, 1);
             final min = DateTime(2022, DateTime.august, 1);
             final max = DateTime(2022, DateTime.september, 30);
-            expect(it.clamp(min: min, max: max), equals(it));
+            test(
+              'when both min and max are null',
+              () {
+                expect(it.clamp(), equals(it));
+              },
+            );
+            test(
+              'when is longer than min and max is null',
+              () {
+                expect(it.clamp(min: min), equals(it));
+              },
+            );
+            test(
+              'when is shorter than max and min is null',
+              () {
+                expect(it.clamp(max: max), equals(it));
+              },
+            );
+            test(
+              'when is longer than min and shorter than max',
+              () {
+                expect(it.clamp(min: min, max: max), equals(it));
+              },
+            );
           },
         );
         test(
