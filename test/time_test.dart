@@ -547,7 +547,7 @@ void main() {
           expect(initial.firstDayOfMonth, expected);
         });
 
-        group('last day of month', (){
+        group('last day of month', () {
           test('last day of month', () {
             final initial = DateTime(2022, 5, 20);
             final expected = DateTime(2022, 5, 31);
@@ -564,7 +564,6 @@ void main() {
             final expected = DateTime(2020, 2, 29);
             expect(initial.lastDayOfMonth, expected);
           });
-
         });
 
         test('first day of year', () {
@@ -578,6 +577,68 @@ void main() {
           final expected = DateTime(2022, 12, 31);
           expect(initial.lastDayOfYear, expected);
         });
+      });
+    });
+
+    group('clamp', () {
+      group('returns max when before it', () {
+        final it = DateTime(2022, DateTime.october, 15);
+        final min = DateTime(2022, DateTime.september, 1);
+        final max = DateTime(2022, DateTime.september, 30);
+
+        test('when it has a value for min', () {
+          expect(it.clamp(min: min, max: max), equals(max));
+        });
+
+        test('when it does not have a value for min', () {
+          expect(it.clamp(max: max), equals(max));
+        });
+      });
+
+      group('returns min when after it', () {
+        final it = DateTime(2022, DateTime.august, 21);
+        final min = DateTime(2022, DateTime.september, 15);
+        final max = DateTime(2022, DateTime.september, 30);
+
+        test('when it has a value for max', () {
+          expect(it.clamp(min: min, max: max), equals(min));
+        });
+
+        test('when it does not have a value for max', () {
+          expect(it.clamp(min: min), equals(min));
+        });
+      });
+
+      group('returns it', () {
+        final it = DateTime(2022, DateTime.september, 1);
+        final min = DateTime(2022, DateTime.august, 1);
+        final max = DateTime(2022, DateTime.september, 30);
+
+        test('when both min and max are null', () {
+          expect(it.clamp(), equals(it));
+        });
+
+        test('when is longer than min and max is null', () {
+          expect(it.clamp(min: min), equals(it));
+        });
+
+        test('when is shorter than max and min is null', () {
+          expect(it.clamp(max: max), equals(it));
+        });
+
+        test('when is longer than min and shorter than max', () {
+          expect(it.clamp(min: min, max: max), equals(it));
+        });
+      });
+
+      test('asserts that min should be before max', () {
+        final it = DateTime(2022, DateTime.september, 1);
+        final min = DateTime(2022, DateTime.september, 30);
+        final max = DateTime(2022, DateTime.august, 1);
+        expect(
+          () => it.clamp(min: min, max: max),
+          throwsA(isA<AssertionError>()),
+        );
       });
     });
   });
@@ -614,6 +675,68 @@ void main() {
       final after = DateTime.now();
       final extraTime = after.millisecondsSinceEpoch - before.add(timeToWait).millisecondsSinceEpoch;
       expect(extraTime >= 0, true);
+    });
+
+    group('clamp', () {
+      group('returns max when shorter than it', () {
+        final it = Duration(days: 10, hours: 12);
+        final min = Duration(days: 5);
+        final max = Duration(days: 10);
+
+        test('when it has a value for min', () {
+          expect(it.clamp(min: min, max: max), equals(max));
+        });
+
+        test('when it does not have a value for min', () {
+          expect(it.clamp(max: max), equals(max));
+        });
+      });
+
+      group('returns min when longer than it', () {
+        final it = Duration(hours: 18);
+        final min = Duration(days: 5);
+        final max = Duration(days: 10);
+
+        test('when it has a value for max', () {
+          expect(it.clamp(min: min, max: max), equals(min));
+        });
+
+        test('when it does not have a value for max', () {
+          expect(it.clamp(min: min), equals(min));
+        });
+      });
+
+      group('returns it', () {
+        final it = Duration(days: 0);
+        final min = Duration(days: -5);
+        final max = Duration(days: 5);
+
+        test('when both min and max are null', () {
+          expect(it.clamp(), equals(it));
+        });
+
+        test('when is longer than min and max is null', () {
+          expect(it.clamp(min: min), equals(it));
+        });
+
+        test('when is shorter than max and min is null', () {
+          expect(it.clamp(max: max), equals(it));
+        });
+
+        test('when is longer than min and shorter than max', () {
+          expect(it.clamp(min: min, max: max), equals(it));
+        });
+      });
+
+      test('asserts that min should be shorter than max', () {
+        final it = Duration(days: -0);
+        final min = Duration(days: 5);
+        final max = Duration(days: -5);
+        expect(
+          () => it.clamp(min: min, max: max),
+          throwsA(isA<AssertionError>()),
+        );
+      });
     });
   });
 }
