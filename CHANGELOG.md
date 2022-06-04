@@ -1,3 +1,14 @@
+## 2.1.1
+
+- Introduce `firstDayOfWeek` extension to `DateTime`
+- Introduce `lastDayOfWeek` extension to `DateTime`
+- Introduce `firstDayOfMonth` extension to `DateTime`
+- Introduce `lastDayOfMonth` extension to `DateTime`
+- Introduce `firstDayOfYear` extension to `DateTime`
+- Introduce `lastDayOfYear` extension to `DateTime`
+- Introduce `clamp` extension to `DateTime`
+- Introduce `clamp` extension to `Duration`
+
 ## 2.1.0
 
 - Introduce `package:clock` dependency for more predictable testing
