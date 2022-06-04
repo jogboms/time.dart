@@ -1,6 +1,7 @@
 # ⏰ Time
 
-[![Build Status - Travis](https://travis-ci.org/jogboms/time.dart.svg?branch=master)](https://travis-ci.org/jogboms/time.dart) [![codecov](https://codecov.io/gh/jogboms/time.dart/branch/master/graph/badge.svg)](https://codecov.io/gh/jogboms/time.dart) [![pub package](https://img.shields.io/pub/v/time.svg)](https://pub.dartlang.org/packages/time)
+
+[![Build](https://github.com/jogboms/time.dart/actions/workflows/build.yml/badge.svg)](https://github.com/jogboms/time.dart/actions/workflows/build.yml) [![codecov](https://codecov.io/gh/jogboms/time.dart/branch/master/graph/badge.svg)](https://codecov.io/gh/jogboms/time.dart) [![pub package](https://img.shields.io/pub/v/time.svg)](https://pub.dartlang.org/packages/time)
 
 With shiny extensions, if you have ever written something like this, then look no further:
 
@@ -11,7 +12,7 @@ final DateTime fourHoursFromNow = DateTime.now() + Duration(hours: 4);
 ## 🎖 Installation
 ```yaml
 dependencies:
-  time: "^1.3.0"
+  time: "^2.1.1"
 ```
 
 ### ⚡ Import
@@ -63,6 +64,17 @@ Iterate through a `DateTime` range:
 final DateTime start = DateTime(2019, 12, 2);
 final DateTime end = start + 1.weeks;
 final DateTime tuesday = start.to(end).firstWhere((date) => date.weekday == DateTime.tuesday);
+```
+
+Granular comparison between `DateTime` fields:
+
+```dart
+final DateTime specificDate = DateTime(2021, 01, 01);
+final DateTime otherDate = DateTime(2021, 02, 01);
+
+print(specificDate.isAtSameYearAs(otherDate)); // true
+print(specificDate.isAtSameMonthAs(otherDate)); // false
+print(specificDate.isAtSameDayAs(otherDate)); // false
 ```
 
 You can also delay code execution:
