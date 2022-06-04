@@ -256,9 +256,8 @@ extension DateTimeTimeExtension on DateTime {
       return min;
     } else if ((max != null) && max.compareTo(this).isNegative) {
       return max;
-    } else {
-      return this;
     }
+    return this;
   }
 }
 
@@ -309,8 +308,7 @@ extension DurationTimeExtension on Duration {
       return min;
     } else if ((max != null) && max.compareTo(this).isNegative) {
       return max;
-    } else {
-      return this;
     }
+    return this;
   }
 }
