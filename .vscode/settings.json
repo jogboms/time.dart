@@ -1,0 +1,9 @@
+{
+  "dart.lineLength": 120,
+  "[dart]": {
+      "editor.tabSize": 2,
+      "editor.rulers": [
+          120
+      ],
+  },
+}
