@@ -89,12 +89,20 @@ void main() {
         );
       });
 
-      test('can get only year, month and day', () {
-        expect(
-          /// Returns only year, month and day
-          DateTime(2020, 4, 10, 15, 27, 30).date,
-          DateTime(2020, 4, 10, 0, 0, 0),
-        );
+      group('can get only year, month and day', () {
+        test('when is not utc', () {
+          expect(
+            DateTime(2020, 4, 10, 15, 27, 30).date,
+            DateTime(2020, 4, 10, 0, 0, 0),
+          );
+        });
+
+        test('when is utc', () {
+          expect(
+            DateTime.utc(2020, 4, 10, 15, 27, 30).date,
+            DateTime.utc(2020, 4, 10, 0, 0, 0),
+          );
+        });
       });
 
       test('can get only the time', () {
