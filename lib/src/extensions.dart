@@ -34,7 +34,7 @@ extension DateTimeTimeExtension on DateTime {
   DateTime operator -(Duration duration) => subtract(duration);
 
   /// Returns only year, month and day
-  DateTime get date => DateTime(year, month, day);
+  DateTime get date => isUtc ? DateTime.utc(year, month, day) : DateTime(year, month, day);
 
   /// Returns only the time
   Duration get timeOfDay => hour.hours + minute.minutes + second.seconds;
