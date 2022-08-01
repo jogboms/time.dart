@@ -249,8 +249,8 @@ extension DateTimeTimeExtension on DateTime {
   /// ```
   DateTime clamp({DateTime? min, DateTime? max}) {
     assert(
-      ((min != null) && (max != null)) ? min.compareTo(max).isNegative : true,
-      'DateTime min has to be before max\n(min: $min - max: $max)',
+      ((min != null) && (max != null)) ? (min.isBefore(max) || (min == max)) : true,
+      'DateTime min has to be before or equal to max\n(min: $min - max: $max)',
     );
     if ((min != null) && compareTo(min).isNegative) {
       return min;
