@@ -648,6 +648,13 @@ void main() {
           throwsA(isA<AssertionError>()),
         );
       });
+
+      test('returns min/max if are equal', () {
+        final it = DateTime(2022, DateTime.september, 1);
+        final min = DateTime(2022, DateTime.september, 30);
+        final max = min;
+        expect(it.clamp(min: min, max: max), min);
+      });
     });
   });
 
