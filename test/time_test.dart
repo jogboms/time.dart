@@ -752,6 +752,13 @@ void main() {
           throwsA(isA<AssertionError>()),
         );
       });
+
+      test('returns min/max if are equal', () {
+        final it = Duration(days: -0);
+        final min = Duration(days: 5);
+        final max = min;
+        expect(it.clamp(min: min, max: max), min);
+      });
     });
   });
 }
