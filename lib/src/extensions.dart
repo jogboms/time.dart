@@ -301,7 +301,7 @@ extension DurationTimeExtension on Duration {
   /// ```
   Duration clamp({Duration? min, Duration? max}) {
     assert(
-      ((min != null) && (max != null)) ? min.compareTo(max).isNegative : true,
+      ((min != null) && (max != null)) ? min.compareTo(max) <= 0 : true,
       'Duration min has to be shorter than max\n(min: $min - max: $max)',
     );
     if ((min != null) && compareTo(min).isNegative) {
