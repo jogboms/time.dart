@@ -1,3 +1,7 @@
+## 2.1.2
+
+- Fix `min` and `max` assertion with `clamp` extension
+
 ## 2.1.1
 
 - Introduce `firstDayOfWeek` extension to `DateTime`
