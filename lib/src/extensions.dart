@@ -259,6 +259,11 @@ extension DateTimeTimeExtension on DateTime {
     }
     return this;
   }
+
+  bool get isWeekend =>
+      (weekday == DateTime.saturday) || (weekday == DateTime.sunday);
+
+  bool get isWorkday => !isWeekend;
 }
 
 extension DurationTimeExtension on Duration {
