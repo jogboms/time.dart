@@ -656,6 +656,66 @@ void main() {
         expect(it.clamp(min: min, max: max), min);
       });
     });
+    group('Weekend', () {
+      test('monday is not weekend', () {
+        final it = DateTime(2022, DateTime.august, 1);
+        expect(it.isWeekend, isFalse);
+      });
+      test('tuesday is not weekend', () {
+        final it = DateTime(2022, DateTime.august, 2);
+        expect(it.isWeekend, isFalse);
+      });
+      test('wednesday is not weekend', () {
+        final it = DateTime(2022, DateTime.august, 3);
+        expect(it.isWeekend, isFalse);
+      });
+      test('thursday is not weekend', () {
+        final it = DateTime(2022, DateTime.august, 4);
+        expect(it.isWeekend, isFalse);
+      });
+      test('friday is not weekend', () {
+        final it = DateTime(2022, DateTime.august, 5);
+        expect(it.isWeekend, isFalse);
+      });
+      test('saturday is weekend', () {
+        final it = DateTime(2022, DateTime.august, 6);
+        expect(it.isWeekend, isTrue);
+      });
+      test('sunday is weekend', () {
+        final it = DateTime(2022, DateTime.august, 7);
+        expect(it.isWeekend, isTrue);
+      });
+    });
+    group('Workday', () {
+      test('monday is workday', () {
+        final it = DateTime(2022, DateTime.august, 1);
+        expect(it.isWorkday, isTrue);
+      });
+      test('tuesday is workday', () {
+        final it = DateTime(2022, DateTime.august, 2);
+        expect(it.isWorkday, isTrue);
+      });
+      test('wednesday is workday', () {
+        final it = DateTime(2022, DateTime.august, 3);
+        expect(it.isWorkday, isTrue);
+      });
+      test('thursday is workday', () {
+        final it = DateTime(2022, DateTime.august, 4);
+        expect(it.isWorkday, isTrue);
+      });
+      test('friday is workday', () {
+        final it = DateTime(2022, DateTime.august, 5);
+        expect(it.isWorkday, isTrue);
+      });
+      test('saturday is not workday', () {
+        final it = DateTime(2022, DateTime.august, 6);
+        expect(it.isWorkday, isFalse);
+      });
+      test('sunday is not workday', () {
+        final it = DateTime(2022, DateTime.august, 7);
+        expect(it.isWorkday, isFalse);
+      });
+    });
   });
 
   group('Duration', () {
