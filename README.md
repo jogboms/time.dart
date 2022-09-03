@@ -12,7 +12,7 @@ final DateTime fourHoursFromNow = DateTime.now() + Duration(hours: 4);
 ## 🎖 Installation
 ```yaml
 dependencies:
-  time: "^2.1.2"
+  time: "^2.1.3"
 ```
 
 ### ⚡ Import
@@ -101,6 +101,8 @@ final expected = initial.copyWith(
   microsecond: 12,
 );
 ```
+
+Visit the [API Reference](https://pub.dev/documentation/time/latest/time/time-library.html) to find out all that is available.
 
 ## 🐛 Bugs/Requests
 
