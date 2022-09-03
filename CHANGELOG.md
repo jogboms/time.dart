@@ -1,3 +1,8 @@
+## 2.1.3
+
+- Introduce `isWeekend` extension to `DateTime`
+- Introduce `isWorkday` extension to `DateTime`
+
 ## 2.1.2
 
 - Fix `min` and `max` assertion with `clamp` extension
