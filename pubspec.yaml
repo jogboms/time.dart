@@ -16,6 +16,4 @@ funding:
 dev_dependencies:
   lints: ^2.0.0
   test: ^1.21.4
-  test_coverage:
-    git:
-      url: https://github.com/timsneath/test-coverage.git
+  coverage: ^1.6.3
