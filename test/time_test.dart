@@ -716,6 +716,19 @@ void main() {
         expect(it.isWorkday, isFalse);
       });
     });
+
+    group('Shift', () {
+      group('empty parameters', () {
+        test('local', () {
+          final it = DateTime(2024, DateTime.january, 3, 2, 24, 12, 123, 456);
+          expect(it.shift(), it);
+        });
+        test('utc', () {
+          final it = DateTime.utc(2024, DateTime.january, 3, 2, 24, 12, 123, 456);
+          expect(it.shift(), it);
+        });
+      });
+    });
   });
 
   group('Duration', () {
