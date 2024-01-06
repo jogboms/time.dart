@@ -272,11 +272,6 @@ extension DateTimeTimeExtension on DateTime {
   /// in the [DateTime] constructor.
   /// The resulting day and time must be withing the supported range for
   /// the `DateTime` class.
-  ///
-  /// The new `DateTime` object is an UTC time if [isUtc] is `true` ,
-  /// and it is local-time if [isUtc] is `false`.
-  /// If [isUtc] is not provided, the created `DateTime` object uses the same
-  /// UTC/local-time choice as the original.
   DateTime shift({
     int years = 0,
     int months = 0,
@@ -286,29 +281,17 @@ extension DateTimeTimeExtension on DateTime {
     int seconds = 0,
     int milliseconds = 0,
     int microseconds = 0,
-    bool? isUtc,
   }) =>
-      (isUtc ?? this.isUtc)
-          ? DateTime.utc(
-              year + years,
-              month + months,
-              day + days,
-              hour + hours,
-              minute + minutes,
-              second + seconds,
-              millisecond + milliseconds,
-              microsecond + microseconds,
-            )
-          : DateTime(
-              year + years,
-              month + months,
-              day + days,
-              hour + hours,
-              minute + minutes,
-              second + seconds,
-              millisecond + milliseconds,
-              microsecond + microseconds,
-            );
+      copyWith(
+        year: year + years,
+        month: month + months,
+        day: day + days,
+        hour: hour + hours,
+        minute: minute + minutes,
+        second: second + seconds,
+        millisecond: millisecond + milliseconds,
+        microsecond: microsecond + microseconds,
+      );
 
   bool get isWeekend => (weekday == DateTime.saturday) || (weekday == DateTime.sunday);
 
