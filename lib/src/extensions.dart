@@ -270,7 +270,7 @@ extension DateTimeTimeExtension on DateTime {
   /// The provided time units can be positive or negative, or any combination.
   /// Overflowing, say by adding more than 30 days to a any date, works like
   /// in the [DateTime] constructor.
-  /// The resulting day and time must be withing the supported range for
+  /// The resulting day and time must be within the supported range for
   /// the `DateTime` class.
   DateTime shift({
     int years = 0,
