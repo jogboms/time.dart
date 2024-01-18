@@ -1,3 +1,7 @@
+## 2.1.4
+
+- Introduce `shift` extension to `DateTime`
+
 ## 2.1.3
 
 - Introduce `isWeekend` extension to `DateTime`
