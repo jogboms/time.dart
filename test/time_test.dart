@@ -716,6 +716,145 @@ void main() {
         expect(it.isWorkday, isFalse);
       });
     });
+
+    group('Shift', () {
+      group('empty parameters', () {
+        test('local', () {
+          final it = DateTime(2024, DateTime.january, 3, 2, 24, 12, 123, 456);
+          expect(it.shift(), it);
+        });
+        test('utc', () {
+          final it = DateTime.utc(2024, DateTime.january, 3, 2, 24, 12, 123, 456);
+          expect(it.shift(), it);
+        });
+      });
+      group('adding parameters', () {
+        final it = DateTime(2000, 1, 1, 1, 1, 1, 1, 1);
+        test('can shift years', () {
+          expect(it.shift(years: 1), DateTime(2001, 1, 1, 1, 1, 1, 1, 1));
+        });
+        test('can shift months', () {
+          expect(it.shift(months: 1), DateTime(2000, 2, 1, 1, 1, 1, 1, 1));
+        });
+        test('can shift days', () {
+          expect(it.shift(days: 1), DateTime(2000, 1, 2, 1, 1, 1, 1, 1));
+        });
+        test('can shift hours', () {
+          expect(it.shift(hours: 1), DateTime(2000, 1, 1, 2, 1, 1, 1, 1));
+        });
+        test('can shift minutes', () {
+          expect(it.shift(minutes: 1), DateTime(2000, 1, 1, 1, 2, 1, 1, 1));
+        });
+        test('can shift seconds', () {
+          expect(it.shift(seconds: 1), DateTime(2000, 1, 1, 1, 1, 2, 1, 1));
+        });
+        test('can shift milliseconds', () {
+          expect(it.shift(milliseconds: 1), DateTime(2000, 1, 1, 1, 1, 1, 2, 1));
+        });
+        test('can shift microseconds', () {
+          expect(it.shift(microseconds: 1), DateTime(2000, 1, 1, 1, 1, 1, 1, 2));
+        });
+      });
+      group('subtracting parameters', () {
+        final it = DateTime(2000, 1, 1, 1, 1, 1, 1, 1);
+        test('can shift years', () {
+          expect(it.shift(years: -1), DateTime(1999, 1, 1, 1, 1, 1, 1, 1));
+        });
+        test('can shift months', () {
+          expect(it.shift(months: -1), DateTime(1999, 12, 1, 1, 1, 1, 1, 1));
+        });
+        test('can shift days', () {
+          expect(it.shift(days: -1), DateTime(1999, 12, 31, 1, 1, 1, 1, 1));
+        });
+        test('can shift hours', () {
+          expect(it.shift(hours: -1), DateTime(2000, 1, 1, 0, 1, 1, 1, 1));
+        });
+        test('can shift minutes', () {
+          expect(it.shift(minutes: -1), DateTime(2000, 1, 1, 1, 0, 1, 1, 1));
+        });
+        test('can shift seconds', () {
+          expect(it.shift(seconds: -1), DateTime(2000, 1, 1, 1, 1, 0, 1, 1));
+        });
+        test('can shift milliseconds', () {
+          expect(it.shift(milliseconds: -1), DateTime(2000, 1, 1, 1, 1, 1, 0, 1));
+        });
+        test('can shift microseconds', () {
+          expect(it.shift(microseconds: -1), DateTime(2000, 1, 1, 1, 1, 1, 1, 0));
+        });
+      });
+      group('overflow', () {
+        group('months', () {
+          test('adding', () {
+            final it = DateTime(2023, 11);
+            expect(it.shift(months: 2), DateTime(2024));
+          });
+          test('subtracting', () {
+            final it = DateTime(2023);
+            expect(it.shift(months: -2), DateTime(2022, 11));
+          });
+        });
+        group('days', () {
+          test('adding', () {
+            final it = DateTime(2023, 2, 27);
+            expect(it.shift(days: 2), DateTime(2023, 3, 1));
+          });
+          test('subtracting', () {
+            final it = DateTime(2023, 2, 1);
+            expect(it.shift(days: -2), DateTime(2023, 1, 30));
+          });
+        });
+        group('hours', () {
+          test('adding', () {
+            final it = DateTime(2023, 2, 1, 23);
+            expect(it.shift(hours: 2), DateTime(2023, 2, 2, 1));
+          });
+          test('subtracting', () {
+            final it = DateTime(2023, 2, 2, 1);
+            expect(it.shift(hours: -2), DateTime(2023, 2, 1, 23));
+          });
+        });
+        group('minutes', () {
+          test('adding', () {
+            final it = DateTime(2023, 2, 1, 1, 59);
+            expect(it.shift(minutes: 2), DateTime(2023, 2, 1, 2, 1));
+          });
+          test('subtracting', () {
+            final it = DateTime(2023, 2, 1, 1);
+            expect(it.shift(minutes: -2), DateTime(2023, 2, 1, 0, 58));
+          });
+        });
+        group('seconds', () {
+          test('adding', () {
+            final it = DateTime(2023, 2, 1, 1, 1, 59);
+            expect(it.shift(seconds: 2), DateTime(2023, 2, 1, 1, 2, 1));
+          });
+          test('subtracting', () {
+            final it = DateTime(2023, 2, 1, 1, 1);
+            expect(it.shift(seconds: -2), DateTime(2023, 2, 1, 1, 0, 58));
+          });
+        });
+        group('milliseconds', () {
+          test('adding', () {
+            final it = DateTime(2023, 2, 1, 1, 1, 1, 999);
+            expect(it.shift(milliseconds: 2), DateTime(2023, 2, 1, 1, 1, 2, 1));
+          });
+          test('subtracting', () {
+            final it = DateTime(2023, 2, 1, 1, 1, 1, 1);
+            expect(it.shift(milliseconds: -2), DateTime(2023, 2, 1, 1, 1, 0, 999));
+          });
+        });
+        group('microseconds', () {
+          test('adding', () {
+            final it = DateTime(2023, 2, 1, 1, 1, 1, 1, 999);
+            expect(it.shift(microseconds: 2), DateTime(2023, 2, 1, 1, 1, 1, 2, 1));
+          });
+          test('subtracting', () {
+            final it = DateTime(2023, 2, 1, 1, 1, 1, 1, 1);
+            expect(it.shift(microseconds: -2), DateTime(2023, 2, 1, 1, 1, 1, 0, 999));
+          });
+        });
+      });
+    });
   });
 
   group('Duration', () {

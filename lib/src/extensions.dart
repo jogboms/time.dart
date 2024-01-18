@@ -260,6 +260,39 @@ extension DateTimeTimeExtension on DateTime {
     return this;
   }
 
+  /// Adds time units to the calendar date and/or clock time.
+  ///
+  /// Creates a new [DateTime] object with a calendar date offset from
+  /// that of the the current one by the provided number of years, months, and/or days,
+  /// and a wall clock time offset from that of the current one by the provided
+  /// hours, minutes, seconds, milliseconds and/or microseconds.
+  ///
+  /// The provided time units can be positive or negative, or any combination.
+  /// Overflowing, say by adding more than 30 days to a any date, works like
+  /// in the [DateTime] constructor.
+  /// The resulting day and time must be within the supported range for
+  /// the `DateTime` class.
+  DateTime shift({
+    int years = 0,
+    int months = 0,
+    int days = 0,
+    int hours = 0,
+    int minutes = 0,
+    int seconds = 0,
+    int milliseconds = 0,
+    int microseconds = 0,
+  }) =>
+      copyWith(
+        year: year + years,
+        month: month + months,
+        day: day + days,
+        hour: hour + hours,
+        minute: minute + minutes,
+        second: second + seconds,
+        millisecond: millisecond + milliseconds,
+        microsecond: microsecond + microseconds,
+      );
+
   bool get isWeekend => (weekday == DateTime.saturday) || (weekday == DateTime.sunday);
 
   bool get isWorkday => !isWeekend;
