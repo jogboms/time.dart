@@ -296,6 +296,19 @@ extension DateTimeTimeExtension on DateTime {
   bool get isWeekend => (weekday == DateTime.saturday) || (weekday == DateTime.sunday);
 
   bool get isWorkday => !isWeekend;
+
+  /// Returns the last microsecond of the day (23:59:59.999999)
+  /// ```dart
+  /// final date = DateTime(2020, 1, 1);
+  /// date.endOfDay; // 2020-01-01 23:59:59.999999
+  /// final date = DateTime(2020, 1, 1, 12, 30, 15, 123, 456);
+  /// date.endOfDay; // 2020-01-01 23:59:59.999999
+  /// ```
+  DateTime get endOfDay {
+    const microsecond = Duration(microseconds: 1);
+    if (isUtc) return DateTime.utc(year, month, day + 1) - microsecond;
+    return DateTime(year, month, day + 1) - microsecond;
+  }
 }
 
 extension DurationTimeExtension on Duration {
