@@ -716,7 +716,18 @@ void main() {
         expect(it.isWorkday, isFalse);
       });
     });
-
+    group('EndOfDay', () {
+      test('returns the last microsecond of the day', () {
+        final it = DateTime(2022, DateTime.august, 1, 12, 30, 15, 10, 5);
+        final expected = DateTime(2022, DateTime.august, 1, 23, 59, 59, 999, 999);
+        expect(it.endOfDay, expected);
+      });
+      test('returns the last microsecond of the day for utc', () {
+        final it = DateTime.utc(2022, DateTime.august, 1, 12, 30, 15, 10, 5);
+        final expected = DateTime.utc(2022, DateTime.august, 1, 23, 59, 59, 999, 999);
+        expect(it.endOfDay, expected);
+      });
+    });
     group('Shift', () {
       group('empty parameters', () {
         test('local', () {
