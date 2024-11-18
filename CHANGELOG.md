@@ -1,3 +1,7 @@
+## 2.1.5
+
+- Introduce `endOfDay` extension to `DateTime`
+
 ## 2.1.4
 
 - Introduce `shift` extension to `DateTime`
