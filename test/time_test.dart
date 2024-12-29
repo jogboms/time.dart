@@ -728,6 +728,40 @@ void main() {
         expect(it.endOfDay, expected);
       });
     });
+    group('IsInRange', () {
+      test('returns true if the date is in the range', () {
+        final it = DateTime(2022, DateTime.august, 1, 1, 0, 0, 0, 0);
+        final start = DateTime(2022, DateTime.august, 1, 0, 0, 0, 0, 0);
+        final end = DateTime(2022, DateTime.august, 1, 23, 59, 59, 999, 999);
+        expect(it.isInRange(start, end), isTrue);
+      });
+      test('returns false if the date is not in the range', () {
+        final it = DateTime(2022, DateTime.august, 0, 0, 0, 0, 0, 0);
+        final start = DateTime(2022, DateTime.august, 1, 0, 0, 0, 0, 0);
+        final end = DateTime(2022, DateTime.august, 1, 23, 59, 59, 999, 999);
+        expect(it.isInRange(start, end), isFalse);
+      });
+      test('returns true if the date is in the range with startInclusive true', () {
+        final it = DateTime(2022, DateTime.august, 1, 0, 0, 0, 0, 0);
+        final start = DateTime(2022, DateTime.august, 1, 0, 0, 0, 0, 0);
+        final end = DateTime(2022, DateTime.august, 1, 23, 59, 59, 999, 999);
+        expect(it.isInRange(start, end, startInclusive: true), isTrue);
+      });
+      test('returns true if the date is in the range with endInclusive true', () {
+        final it = DateTime(2022, DateTime.august, 1, 23, 59, 59, 999, 999);
+        final start = DateTime(2022, DateTime.august, 1, 0, 0, 0, 0, 0);
+        final end = DateTime(2022, DateTime.august, 1, 23, 59, 59, 999, 999);
+        expect(it.isInRange(start, end, endInclusive: true), isTrue);
+      });
+      test('returns true if the date is in the range with both startInclusive and endInclusive true', () {
+        final it1 = DateTime(2022, DateTime.august, 1, 0, 0, 0, 0, 0);
+        final it2 = DateTime(2022, DateTime.august, 1, 23, 59, 59, 999, 999);
+        final start = DateTime(2022, DateTime.august, 1, 0, 0, 0, 0, 0);
+        final end = DateTime(2022, DateTime.august, 1, 23, 59, 59, 999, 999);
+        expect(it1.isInRange(start, end, startInclusive: true, endInclusive: true), isTrue);
+        expect(it2.isInRange(start, end, startInclusive: true, endInclusive: true), isTrue);
+      });
+    });
     group('Shift', () {
       group('empty parameters', () {
         test('local', () {
