@@ -37,7 +37,8 @@ extension DateTimeTimeExtension on DateTime {
   DateTime get date => isUtc ? DateTime.utc(year, month, day) : DateTime(year, month, day);
 
   /// Returns only the time
-  Duration get timeOfDay => hour.hours + minute.minutes + second.seconds;
+  Duration get timeOfDay =>
+      hour.hours + minute.minutes + second.seconds + millisecond.milliseconds + microsecond.microseconds;
 
   /// Returns if today, true
   bool get isToday {

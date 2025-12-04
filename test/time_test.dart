@@ -113,6 +113,19 @@ void main() {
         );
       });
 
+      test('can get complete time with milliseconds and microseconds', () {
+        expect(
+          DateTime(2020, 4, 10, 15, 27, 30, 500, 250).timeOfDay,
+          Duration(hours: 15, minutes: 27, seconds: 30, milliseconds: 500, microseconds: 250),
+        );
+      });
+
+      test('timeOfDay preserves precision when reconstructing DateTime', () {
+        final original = DateTime(2020, 1, 1, 12, 30, 15, 500, 250);
+        final reconstructed = original.date + original.timeOfDay;
+        expect(reconstructed, equals(original));
+      });
+
       test('can handle isToday', () {
         final today = date;
         withClock(Clock.fixed(today), () {
