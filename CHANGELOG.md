@@ -1,3 +1,7 @@
+## 2.1.6
+
+- Include `milliseconds` and `microseconds` in `timeOfDay` extension to `DateTime`
+
 ## 2.1.5
 
 - Introduce `endOfDay` extension to `DateTime`
