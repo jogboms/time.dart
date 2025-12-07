@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: dev
@@ -35,7 +35,7 @@ jobs:
         run: dart run coverage:format_coverage -l -i ./coverage/test/time_test.dart.vm.json -o ./coverage/lcov.info
 
       - name: Upload coverage to codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
