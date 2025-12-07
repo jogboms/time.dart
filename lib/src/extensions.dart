@@ -310,6 +310,31 @@ extension DateTimeTimeExtension on DateTime {
     if (isUtc) return DateTime.utc(year, month, day + 1) - microsecond;
     return DateTime(year, month, day + 1) - microsecond;
   }
+
+  /// Returns true if this DateTime is in the range [start]-[end].
+  ///
+  /// [startInclusive] and [endInclusive] control the range boundaries:
+  /// - Left-open right-open (false, false): (start, end)
+  /// - Left-open right-closed (false, true): (start, end]
+  /// - Left-closed right-open (true, false): [start, end)
+  /// - Left-closed right-closed (true, true): [start, end]
+  bool isInRange(
+    DateTime start,
+    DateTime end, {
+    bool startInclusive = false,
+    bool endInclusive = false,
+  }) {
+    final left = compareTo(start);
+    final right = compareTo(end);
+    if (startInclusive && endInclusive) {
+      return left >= 0 && right <= 0;
+    } else if (startInclusive) {
+      return left >= 0 && right < 0;
+    } else if (endInclusive) {
+      return left > 0 && right <= 0;
+    }
+    return left > 0 && right < 0;
+  }
 }
 
 extension DurationTimeExtension on Duration {
